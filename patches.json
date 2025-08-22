@@ -4,7 +4,7 @@
     {
       "from": "1.0.0",
       "to": "1.1.0",
-      "url": "https://github.com/Epoch2222/Solo-Leveling-System/tree/main/patches/patch_1.0.0_to_1.1.0.diff"
+      "url": "https://raw.githubusercontent.com/Epoch2222/Solo-Leveling-System/main/patches/patch_1.0.0_to_1.1.0.diff"
     }
   ]
 }

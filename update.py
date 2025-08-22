@@ -37,7 +37,7 @@ def finish_update():
 
 # --- SCRIPT CONFIGURATION ---
 # URL to the JSON file that describes the patches
-patches_manifest_url = "https://github.com/Epoch2222/Solo-Leveling-System/tree/main/patches.json" # <-- Make sure this URL is correct!
+patches_manifest_url = "https://raw.githubusercontent.com/Epoch2222/Solo-Leveling-System/main/patches.json" # <-- Make sure this URL is correct!
 local_csv_path = "version.csv"
 target_directory = "."
 
