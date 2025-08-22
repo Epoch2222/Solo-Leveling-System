@@ -1,0 +1,105 @@
+{
+    "Body Scan":[
+        {
+            "desc":"Perform a mental scan, from the top of the head to the end of your toes. Imagine a photocopier light slowly moving over your body, bringing attention to any discomfort, sensations, tensions, or aches that exist..",
+            "time":2,
+
+            "timeval":"Minutes",
+            "type":"Learn"
+        },
+        {
+            "PERBUFF":1
+        }
+    ],
+
+    "Visualization":[
+        {
+            "desc":"Visualize a flame in your lower belly for the allotted time.",
+            "time":2,
+
+            "timeval":"Minutes",
+            "type":"Learn"
+        },
+        {
+            "PERBUFF":1
+        }
+    ],
+
+    "Time":[
+        {
+            "desc":"Take a moment to look at the clock. Let yourself zone out. Watch as time flows past. It may start to slow or speed up.",
+            "time":1,
+
+            "timeval":"Minute",
+            "type":"Learn"
+        },
+        {
+            "PERBUFF":1
+        }
+    ],
+
+    "Mindful Observation":[
+        {
+            "desc":"Take a moment to choose an object around you. Focus on it, and observe it as if you're seeing it for the first time. Allow yourself to be consumed by its presence and connect with its purpose in the natural world.",
+            "time":2,
+
+            "timeval":"Minutes",
+            "type":"Learn"
+        },
+        {
+            "PERBUFF":1
+        }
+    ],
+
+    "Total Concentration Awareness":[
+        {
+            "desc":"Focus on your thoughts. Meditate for 3 minutes to start, and then for the last 3 minutes, ask yourself questions that you want answered and wait for an answer in silence.",
+            "time":6,
+
+            "timeval":"Minutes",
+            "type":"Learn"
+        },
+        {
+            "PERBUFF":1
+        }
+    ],
+
+    "Mindful Listening":[
+        {
+            "desc":"Close your eyes and put on your headphones. Don't judge the music by its genre, title, or artist. Instead, allow yourself to get lost in the sound journey. Explore every aspect of the track, even if you don't like it at first. Listen to each instrument's dynamics separately and focus on the vocals, including tone and range.",
+            "time":2,
+
+            "timeval":"Minutes",
+            "type":"Learn"
+        },
+        {
+            "PERBUFF":1
+        }
+    ],
+
+    "Mindful Immersion":[
+        {
+            "desc":"Instead of labouring through and constantly thinking about finishing a particular task, become aware of every step and fully immerse yourself in the progress. Take the activity beyond a routine by aligning yourself with it physically, mentally and spiritually. Some examples of tasks to do are: Drinking water, Washing the dishes, Doing laundry, Eating, Cleaning your room or Decluttering a small area like a shelf or drawer.",
+            "time":2,
+
+            "timeval":"Minutes",
+            "type":"Learn"
+        },
+        {
+            "PERBUFF":1
+        }
+    ],
+
+    "Mindful Appreciation":[
+        {
+            "desc":"Take time to list on physical paper what you are thankful for.",
+            "amt":5,
+
+            "amtval":"Journal (Specific Things)",
+            "type":"Learn"
+        },
+        {
+            "PERBUFF":1
+        }
+    ]
+}

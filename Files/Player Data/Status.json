@@ -1,0 +1,55 @@
+{
+    "status": [
+        {
+            "name": "Sung Jin-Woo",
+            "hp": 410,
+            "mp": 425,
+            "level": 32,
+            "str": 41,
+            "int": 44,
+            "agi": 41,
+            "vit": 41,
+            "per": 41,
+            "man": 41,
+            "XP": 1017,
+            "coins": 210,
+            "fatigue_max": 510,
+            "fatigue": 115.0,
+            "last_level": 32,
+            "highest_floor": 9
+        },
+        {
+            "title_bool": "False",
+            "title": "None",
+            "job": "None"
+        }
+    ],
+    "avail_eq": [
+        {
+            "str_based": 0,
+            "int_based": 0
+        }
+    ],
+    "equipment": [
+        {
+            "STR": 0,
+            "AGI": 0,
+            "VIT": 0,
+            "INT": 0,
+            "PER": 0,
+            "MAN": 0
+        }
+    ],
+    "cal_data": [
+        {
+            "age": "17",
+            "gender": "M",
+            "height": "162",
+            "weight": "65",
+            "calorie calc": 2000,
+            "final calorie calc": 2100,
+            "result": "MILD WEIGHT LOSS",
+            "BMI": 23
+        }
+    ]
+}

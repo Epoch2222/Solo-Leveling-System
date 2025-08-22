@@ -1,0 +1,54 @@
+{
+    "Books":[
+        {
+            "desc":"Pick a book (can be any book) and read.",
+            "amt":1,
+
+            "amtval":"Chapters",
+            "type":"Common"
+        },
+        {
+            "INTBUFF":1
+        }
+    ],
+
+    "Dual N Back Training":[
+        {
+            "desc":"Use a Dual-N-Back app (like brain workshop) and use Dual-N-Back or Quad-N-Back to increase your IQ.",
+            "time":10,
+
+            "timeval":"Minutes",
+            "type":"Learn"
+        },
+        {
+            "INTBUFF":1
+        }
+    ],
+
+    "Water":[
+        {
+            "desc":"Just drink the average glass size at your house. (A liter is the perfect amount to drink each hour.)",
+            "amt":2,
+
+            "amtval":"(Approx 500ML) Glasses of Water.",
+            "type":"Common"
+        },
+        {
+            "VITBUFF":1
+        }
+    ],
+
+    "Meditate":[
+        {
+            "desc":"Try to figure out something by yourself, without google, the internet, or any exterior source of information...",
+            "time":2,
+
+            "timeval":"Minutes",
+            "type":"Common"
+        },
+        {
+            "VITBUFF":1
+        }
+    ]
+
+}

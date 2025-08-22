@@ -1,0 +1,73 @@
+{
+    "Jumping Jacks":[
+        {
+            "desc":"It is a physical jumping exercise performed by jumping to a position with the legs spread wide and the hands going overhead, sometimes in a clap, and then returning to a position with the feet together and the arms at the sides.",
+            "time": 45,
+
+            "timeval":"Seconds",
+            "type":"Common",
+
+            "Areas":["Legs","Shoulder"]
+        }
+    ],
+
+    "Skipping":[
+        {
+            "desc":"Skipping is a form of exercise that involves swinging a rope around your body and jumping over it as it passes under your feet",
+            "time": 60,
+
+            "timeval":"Seconds",
+            "type":"Common",
+
+            "Areas":["Legs"]
+        }
+    ],
+
+    "Windwill Toe Touch":[
+        {
+            "desc":"It involves standing on the toes and arms extended with palms facing forward, turning around to touch the opposite toe with the hand and then returning to the starting position.",
+            "time": 45,
+
+            "timeval":"Seconds",
+            "type":"Common",
+
+            "Areas":["Shoulder", "Core", "Legs"]
+        }
+    ],
+
+    "Tuck Jumps":[
+        {
+            "desc":"It is a progression upon the bodyweight squat jump that entails a lifter to tuck their legs up into the chest once in flight, then fully place them back into the landing position each and every jump",
+            "time": 45,
+
+            "timeval":"Seconds",
+            "type":"Common",
+
+            "Areas":["Legs", "Core"]
+        }
+    ],
+
+    "High Knees":[
+        {
+            "desc":"It Involves running in place while lifting one knee up towards the chest at a time, alternating between both legs",
+            "time": 45,
+
+            "timeval":"Seconds",
+            "type":"Learn",
+
+            "Areas":["Legs", "Core"]
+        }
+    ],
+
+    "Quick Feet (Line Taps)":[
+        {
+            "desc":"Mark a small line (a real or imaginary line). Step forward and back across the line as quickly as possible.",
+            "time": 45,
+
+            "timeval":"Seconds",
+            "type":"Common",
+
+            "Areas":["Legs"]
+        }
+    ]
+}

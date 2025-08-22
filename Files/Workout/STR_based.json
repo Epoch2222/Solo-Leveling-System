@@ -1,0 +1,106 @@
+{
+    "Shoulder Tap Pushups":[
+        {
+            "desc":"Tap the right Shoulder with your left hand and vice-versa after one pushup",
+            "amt":15,
+
+            "amtval":"Reps",
+            "type":"Common",
+
+            "Areas":["Chest", "Shoulder", "Arms", "Core"]
+        }
+    ],
+
+    "Lunges":[
+        {
+            "desc":"Take a large step forward and lower your body until your front thigh is parallel with the ground, while keeping your back straight.",
+            "amt":15,
+
+            "amtval":"Reps",
+            "type":"Common",
+
+            "Areas":["Legs", "Core"]
+        }
+    ],
+
+    "Mountain Climber":[
+        {
+            "desc":"Using your abdominals, bend your right knee in toward your chest, then step it back into the plank position. Repeat with your left leg, bringing it toward your chest and then stepping it back",
+            "time":45,
+
+            "timeval":"Seconds",
+            "type":"Common",
+
+            "Areas":["Legs", "Core", "Shoulder"]
+        }
+    ],
+
+    "Plank":[
+        {
+            "desc":"Start lying facedown and place elbows directly under shoulders. Then push your body up using your abs. Make sure you keep your back straight so you don't strain on your lower back.",
+            "time":45,
+
+            "timeval":"Seconds",
+            "type":"Common",
+
+            "Areas":["Back", "Core", "Shoulder"]
+        }
+    ],
+
+    "Leg Lifts":[
+        {
+            "desc":"Lay on your back. With your feet together and with your hands on the ground, and raise your legs straight up. Remember to keep them straight (like a spear).",
+            "amt":15,
+
+
+            "amtval":"Reps",
+            "type":"Common",
+
+            "Areas":["Legs", "Core"]
+        }
+    ],
+    "Crunches":[
+        {
+            "desc":"Crunches are exercises that you do to strengthen your stomach muscles. They involve sitting up from a lying position with your legs straight, bent, or raised.",
+            "amt":15,
+
+            "amtval":"Reps",
+            "type":"Common",
+
+            "Areas":["Core"]
+        }
+    ],
+    "Wall Sit":[
+        {
+            "desc":"Sit against a wall with your back flat and knees bent at a 90-degree angle, as if sitting on an invisible chair.",
+            "time":45,
+
+            "timeval":"Seconds",
+            "type":"Common",
+
+            "Areas":["Legs", "Core"]
+        }
+    ],
+    "High Knees":[
+        {
+            "desc":"Jog in place while bringing your knees as high as possible toward your chest.",
+            "time":45,
+
+            "timeval":"Seconds",
+            "type":"Common",
+
+            "Areas":["Legs", "Core"]
+        }
+    ],
+    "Superman Hold":[
+        {
+            "desc":"Lie face down, extend your arms and legs, and lift them slightly off the ground, holding the position.",
+            "time":45,
+
+            "timeval":"Seconds",
+            "type":"Common",
+
+            "Areas":["Back", "Shoulder", "Core"]
+        }
+    ]
+}
