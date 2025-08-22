@@ -18,6 +18,7 @@ import csv
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -50,11 +51,11 @@ def move_window(event):
 
 def ex_close(window):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=20, delay=1)
     
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window = Tk()
 
@@ -151,7 +152,7 @@ def get():
         tab_son_data=json.load(tab_son)
 
     if tab_son_data["Status"]=='Close':
-        subprocess.Popen(['python', 'Anime Version/Status Tab/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Anime Version/Status Tab/gui.py')])
     ex_close(window)
 
 def secret_get():
@@ -203,7 +204,7 @@ def secret_get():
     with open("Files/Player Data/Tabs.json",'r') as tab_son:
         tab_son_data=json.load(tab_son)
     if tab_son_data["Status"]!='Open':
-        subprocess.Popen(['python', 'Anime Version/Status Tab/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Anime Version/Status Tab/gui.py')])
     window.quit()
 
 def great_get():
@@ -255,7 +256,7 @@ def great_get():
     with open("Files/Player Data/Tabs.json",'r') as tab_son:
         tab_son_data=json.load(tab_son)
     if tab_son_data["Status"]!='Open':
-        subprocess.Popen(['python', 'Anime Version/Status Tab/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Anime Version/Status Tab/gui.py')])
     window.quit()
 
 def give_rev():

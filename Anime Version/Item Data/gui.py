@@ -30,6 +30,7 @@ import thesystem.system
 import thesystem.equipmentbk as equipment
 import thesystem.inventory
 import thesystem.itemequip
+from thesystem.misc import resource_path
 
 
 window = Tk()
@@ -76,7 +77,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (957, 43), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (1026, 47), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 debuff_1_name=''
 debuff_2_name=''
@@ -109,8 +110,8 @@ def ex_close(win):
         stop_event.set()
         update_thread.join()
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
-    subprocess.Popen(['python', 'Anime Version/Inventory/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
+    subprocess.Popen([sys.executable, resource_path('Anime Version/Inventory/gui.py')])
     thesystem.system.animate_window_close(window, 0, window_width, step=20, delay=1)
 
 typs='Item'

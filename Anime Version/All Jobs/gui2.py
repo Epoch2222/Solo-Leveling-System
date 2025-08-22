@@ -16,6 +16,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '../../'))
@@ -73,7 +74,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (695, 39), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (702, 36), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 def start_move(event):
     window.lastx, window.lasty = event.widget.winfo_pointerxy()
@@ -127,13 +128,13 @@ def prog():
     window.after(5000, second)
 
 def second():
-    subprocess.Popen(['python', 'Files\Mod\default\sfx_glitch.py'])
+    subprocess.Popen([sys.executable, resource_path('Files\Mod\default\sfx_glitch.py')])
     canvas.itemconfig("First", state="hidden")
     canvas.itemconfig("Second", state="normal")
     window.after(5000, third)
 
 def third():
-    subprocess.Popen(['python', 'Files\Mod\default\sfx_glitch.py'])
+    subprocess.Popen([sys.executable, resource_path('Files\Mod\default\sfx_glitch.py')])
     canvas.itemconfig("First", state="hidden")
     canvas.itemconfig("Second", state="hidden")
     canvas.itemconfig("Third", state="normal")

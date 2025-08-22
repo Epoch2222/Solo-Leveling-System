@@ -19,6 +19,7 @@ import sys
 import os
 import random
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -72,7 +73,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (840, 47), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (723, 47), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 thesystem.system.animate_window_open(window, target_height, window_width, step=30, delay=1)
 
@@ -348,11 +349,11 @@ def next():
         thesystem.system.get_fin_xp()
         stop_event.set()
         update_thread.join()
-        subprocess.Popen(['python', 'Anime Version/Demon Castle/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Anime Version/Demon Castle/gui.py')])
         window.quit()
 
     else:
-        subprocess.Popen(['python', 'Files\Mod\default\sfx_glitch.py'])
+        subprocess.Popen([sys.executable, resource_path('Files\Mod\default\sfx_glitch.py')])
         mob_fun()
 
 canvas = Canvas(

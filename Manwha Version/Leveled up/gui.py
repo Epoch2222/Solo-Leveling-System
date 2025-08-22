@@ -15,6 +15,7 @@ import threading
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -40,7 +41,7 @@ window_width = 513
 window.geometry(f"{window_width}x{initial_height}")
 thesystem.system.make_window_transparent(window)
 thesystem.system.center_window(window,window_width,target_height)
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window.configure(bg = "#FFFFFF")
 set_data=thesystem.misc.return_settings()
@@ -64,7 +65,7 @@ def move_window(event):
 
 def ex_close(eve):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=5, delay=1)
 
 canvas = Canvas(

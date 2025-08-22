@@ -28,6 +28,7 @@ project_root = os.path.abspath(os.path.join(current_dir, '../../'))
 sys.path.insert(0, project_root)
 
 import thesystem.system
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -49,7 +50,7 @@ def move_window(event):
 
 def ex_close(eve):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=20, delay=1)
 
 def name(eve,name):
@@ -73,7 +74,7 @@ def name(eve,name):
             theme=theme_data["Theme"]
 
     if istrue=='True':
-        subprocess.Popen(['Python', f'{theme} Version/Settings/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Settings/gui.py')])
         with open("Files/Checks/theme_open.csv", 'w', newline='') as info_open:
             fw=csv.writer(info_open)
             fw.writerow(["False"])
@@ -83,7 +84,7 @@ def name(eve,name):
         with open("Files/Player Data/First_open.csv", 'w', newline='') as info_open:
             fw=csv.writer(info_open)
             fw.writerow(["True"])
-        subprocess.Popen(['python', 'gui.py'])
+        subprocess.Popen([sys.executable, resource_path('gui.py')])
         ex_close(window)
 
 window = Tk()
@@ -116,7 +117,7 @@ bottom_size = (850, 47)
 top_preloaded_images = thesystem.system.load_or_cache_images(top_folder_path, top_size, job="NONE", type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_folder_path, bottom_size, job="NONE", type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 canvas = Canvas(
     window,

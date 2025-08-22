@@ -25,6 +25,7 @@ project_root = os.path.abspath(os.path.join(current_dir, '../../'))
 sys.path.insert(0, project_root)
 
 import thesystem.system
+import thesystem.misc
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -83,7 +84,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (550, 38), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (550, 33), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx.py')])
 
 def start_move(event):
     window.lastx, window.lasty = event.widget.winfo_pointerxy()
@@ -106,7 +107,7 @@ def ex_close(win):
     with open("Files/Player Data/Tabs.json",'w') as fin_tab_son:
         tab_son_data["Shop"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_close.py')])
     win.quit()
 
 with open("Files/Player Data/Status.json", 'r') as fson:
@@ -121,7 +122,7 @@ def open_prog(name, cat, rank, desc, value):
             rec=[name,cat,rank,desc,value]
             fw.writerow(rec)
 
-        subprocess.Popen(['python', 'Anime Version/Shop/gui1.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Anime Version/Shop/gui1.py')])
 
         ex_close(window)
 

@@ -28,6 +28,13 @@ from math import sin, cos, pi
 import random
 from raid_interface import RaidInterface
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+project_root = os.path.abspath(os.path.join(current_dir, '../../'))
+
+sys.path.insert(0, project_root)
+
+import thesystem.misc
 # ✨ NEW: Helper function to load player stats
 def load_player_stats():
     try:
@@ -547,7 +554,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (1229, 47), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (1229, 47), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx.py')])
 
 thesystem.system.animate_window_open(window, target_height, window_width, step=50, delay=1)
 
@@ -595,7 +602,7 @@ def ex_close(win):
         tab_son_data["Castle"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=50, delay=1)
 
 def ex_dc_close(win):
@@ -611,10 +618,10 @@ def ex_dc_close(win):
         tab_son_data["Castle"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
 
-    subprocess.Popen(['python', 'Anime Version/Demon Castle Quest Reminder/gui.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Anime Version/Demon Castle Quest Reminder/gui.py')])
     
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=50, delay=1)
 
 canvas = Canvas(

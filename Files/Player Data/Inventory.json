@@ -1,1 +1,15 @@
-{}
+{
+    "Coin Bag 500": [
+        {
+            "desc": "A bag of 500-or-so coins",
+            "qty": 1,
+            "cat": "MONEY",
+            "rank": "D",
+            "buff": "",
+            "debuff": "",
+            "quest": true,
+            "rarity": "Common",
+            "Value": 500
+        }
+    ]
+}

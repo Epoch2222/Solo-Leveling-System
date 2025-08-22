@@ -1,16 +1,16 @@
 import requests
+from thesystem.misc import resource_path
 import pandas as pd
 from packaging import version
 import zipfile
 import shutil
 import os
+from io import BytesIO
 import time
 import threading
 from datetime import datetime
 import tkinter as tk
 from tkinter import ttk
-import json
-import patch_ng # Requires "pip install patch-ng"
 
 # --- CONFIGURATION ---
 
@@ -42,13 +42,18 @@ def finish_update():
     progress["value"] = 100
     close_btn.lift()
 
-# --- NEW CONFIGURATION ---
-# URL to the JSON file that describes the patches
-patches_manifest_url = "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/patches.json"
+# --- CONFIGURATION ---
+
+github_csv_url = "https://raw.githubusercontent.com/Venexs/The-System/refs/heads/Update_RAW/version.csv"
 local_csv_path = "version.csv"
+repo_zip_url = "https://github.com/Venexs/The-System/archive/refs/heads/Update_RAW.zip"
 target_directory = "."
 
+def github_blob_to_raw(url):
+    return url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/")
+
 def create_backup(source_dir, backup_dir="Update Backup"):
+    # Remove existing zip backups
     if os.path.exists(backup_dir):
         for file in os.listdir(backup_dir):
             if file.endswith(".zip"):
@@ -58,9 +63,11 @@ def create_backup(source_dir, backup_dir="Update Backup"):
                 except Exception as e:
                     log(f"Failed to delete {file}: {e}")
 
+    # Create backup filename
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     os.makedirs(backup_dir, exist_ok=True)
     backup_path = os.path.join(backup_dir, f"backup_{timestamp}.zip")
+
     log(f"Creating backup at: {backup_path}")
 
     def zipdir(path, ziph):
@@ -73,15 +80,17 @@ def create_backup(source_dir, backup_dir="Update Backup"):
 
     with zipfile.ZipFile(backup_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
         zipdir(source_dir, zipf)
+
     log("Backup complete.")
 
-def get_remote_manifest(url):
+def get_remote_version(raw_csv_url):
     try:
-        response = requests.get(url)
-        response.raise_for_status()
-        return response.json()
+        df = pd.read_csv(raw_csv_url, header=None)
+        if df.empty:
+            raise ValueError("Remote CSV is empty.")
+        return str(df.iloc[0, 0)]).strip()
     except Exception as e:
-        log(f"Error fetching remote manifest: {e}")
+        log(f"Error reading remote CSV: {e}")
         return None
 
 def get_local_version(local_path):
@@ -89,18 +98,55 @@ def get_local_version(local_path):
         df = pd.read_csv(local_path, header=None)
         if df.empty:
             raise ValueError("Local CSV is empty.")
-        return str(df.iloc[0, 0]).strip()
+        return str(df.iloc[0, 0)]).strip()
     except Exception as e:
         log(f"Error reading local CSV: {e}")
         return None
 
-def download_file_with_progress(url, output_path):
-    log("Downloading patch...")
+def is_file_locked(filepath):
+    try:
+        with open(filepath, 'a'):
+            return False
+    except IOError:
+        return True
+
+def safe_move(src, dst):
+    for _ in range(3):
+        if not is_file_locked(src):
+            try:
+                shutil.move(src, dst)
+                return True
+            except Exception as e:
+                log(f"Error moving {src} to {dst}: {e}")
+        log(f"Retrying move for: {src}")
+        time.sleep(1)
+    log(f"Failed to move: {src}")
+    return False
+
+def force_remove(path):
+    if os.path.isdir(path):
+        for _ in range(3):
+            try:
+                shutil.rmtree(path, ignore_errors=False)
+                return
+            except PermissionError:
+                log(f"Retrying delete of folder: {path}")
+                time.sleep(1)
+    elif os.path.exists(path):
+        for _ in range(3):
+            try:
+                os.remove(path)
+                return
+            except PermissionError:
+                log(f"Retrying delete of file: {path}")
+                time.sleep(1)
+
+def download_zip_with_progress(url, output_path):
+    log("Starting download...")
     response = requests.get(url, stream=True)
-    response.raise_for_status()
     total = int(response.headers.get('content-length', 0))
     downloaded = 0
-    chunk_size = 8192
+    chunk_size = 8192  # 8KB
 
     with open(output_path, 'wb') as f:
         for chunk in response.iter_content(chunk_size=chunk_size):
@@ -112,87 +158,75 @@ def download_file_with_progress(url, output_path):
                 log(f"Downloading... {percent:.2f}%")
     log("Download complete.")
 
+def download_and_replace(zip_url, destination):
+    temp_zip_path = "__temp_download__.zip"
+    temp_extract_dir = "__temp_extract__"
 
-def download_and_apply_patch(patch_url, destination):
-    temp_patch_file = "__temp_patch__.diff"
-    
-    try:
-        download_file_with_progress(patch_url, temp_patch_file)
-        log("Applying patch...")
-        
-        # Use the patch library to apply the diff
-        patch_set = patch.fromfile(temp_patch_file)
-        if not patch_set:
-            log("Could not parse patch file.")
-            return False
+    download_zip_with_progress(zip_url, temp_zip_path)
 
-        if patch_set.apply(root=destination):
-            log("Patch applied successfully.")
-            progress["value"] = 100
+    with zipfile.ZipFile(temp_zip_path, 'r') as zip_ref:
+        zip_ref.extractall(temp_extract_dir)
+
+    extracted_folder = os.path.join(temp_extract_dir, os.listdir(temp_extract_dir)[0)])
+    total_files = sum([len(files) for r, d, files in os.walk(extracted_folder)])
+    moved_files = 0
+
+    for item in os.listdir(extracted_folder):
+        s = os.path.join(extracted_folder, item)
+        d = os.path.join(destination, item)
+
+        if os.path.exists(d):
+            if os.path.isdir(s):
+                for root_dir, dirs, files in os.walk(s):
+                    rel_path = os.path.relpath(root_dir, s)
+                    target_subdir = os.path.join(d, rel_path)
+                    os.makedirs(target_subdir, exist_ok=True)
+                    for file in files:
+                        src_file = os.path.join(root_dir, file)
+                        dst_file = os.path.join(target_subdir, file)
+                        if os.path.exists(dst_file):
+                            force_remove(dst_file)
+                        safe_move(src_file, dst_file)
+                        moved_files += 1
+                        progress["value"] = 100 * moved_files / total_files
+                        log(f"Updating: {file}")
+            else:
+                force_remove(d)
+                safe_move(s, d)
+                moved_files += 1
+                progress["value"] = 100 * moved_files / total_files
         else:
-            log("Failed to apply patch. Please check logs.")
-            # Optionally, you could restore the backup here.
-            return False
+            safe_move(s, d)
+            moved_files += 1
+            progress["value"] = 100 * moved_files / total_files
 
-    except Exception as e:
-        log(f"An error occurred during patching: {e}")
-        return False
-    finally:
-        if os.path.exists(temp_patch_file):
-            os.remove(temp_patch_file)
-            
-    return True
-
-
+    os.remove(temp_zip_path)
+    shutil.rmtree(temp_extract_dir, ignore_errors=True)
+    log("Update process finished.")
+    finish_update()
 def run_update_thread():
     try:
-        manifest = get_remote_manifest(patches_manifest_url)
+        raw_url = github_blob_to_raw(github_csv_url)
+        remote_ver = get_remote_version(raw_url)
         local_ver = get_local_version(local_csv_path)
 
-        if not manifest or not local_ver:
-            log("Could not read version files.")
-            finish_update()
-            return
-
-        remote_ver = manifest.get("latest")
-        if not remote_ver:
-            log("Invalid remote manifest format.")
-            finish_update()
+        if remote_ver is None or local_ver is None:
+            log("Could not read one or both version files.")
             return
 
         log(f"Local version: {local_ver}")
         log(f"Remote version: {remote_ver}")
 
         if version.parse(remote_ver) > version.parse(local_ver):
-            log("Newer version found.")
-            
-            # Find the correct patch to apply
-            patch_to_apply = None
-            for p in manifest.get("patches", []):
-                if p.get("from") == local_ver and p.get("to") == remote_ver:
-                    patch_to_apply = p
-                    break
-            
-            if not patch_to_apply:
-                log(f"No direct patch found from {local_ver} to {remote_ver}.")
-                log("Consider implementing multi-step patching or a full download fallback.")
-                finish_update()
-                return
-
+            log("Newer version found on GitHub.")
             create_backup(target_directory)
-            
-            if download_and_apply_patch(patch_to_apply["url"], target_directory):
-                with open(local_csv_path, "w") as f:
-                    f.write(remote_ver)
-                log("Update complete. Local version file updated.")
-            else:
-                log("Update failed. Please check the backup folder.")
-
-            finish_update()
+            download_and_replace(repo_zip_url, target_directory)
+            with open(local_csv_path, "w") as f:
+                f.write(remote_ver)
+            log("Local version file updated.")
         else:
             log("You already have the latest version.")
             finish_update()
-            
     except Exception as e:
         log(f"[Update Thread] Error: {e}")
         finish_update()

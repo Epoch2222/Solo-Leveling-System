@@ -104,10 +104,10 @@ def ex_close(win):
     if setting_data["Settings"]["Performernce (ANIME):"] != "True":
         stop_event.set()
         update_thread.join()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, misc.resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, 0, window_width, step=50, delay=1)
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, misc.resource_path('Files/Mod/default/sfx.py')])
 
 def attri_show():
     canvas.itemconfig("Credit", state="hidden")

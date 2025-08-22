@@ -19,6 +19,7 @@ import threading
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 import random
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -31,7 +32,7 @@ import thesystem.system
 import thesystem.castle
 import thesystem.dungeon
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame1")
 
@@ -320,11 +321,11 @@ def next():
             ujson.dump(status_read_data, fson, indent=4)
 
         thesystem.system.get_fin_xp()
-        subprocess.Popen(['python', 'Manwha Version/Demon Castle/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Manwha Version/Demon Castle/gui.py')])
         window.quit()
 
     else:
-        subprocess.Popen(['python', 'Files\Mod\default\sfx_glitch.py'])
+        subprocess.Popen([sys.executable, resource_path('Files\Mod\default\sfx_glitch.py')])
         mob_fun()
 
 canvas = Canvas(

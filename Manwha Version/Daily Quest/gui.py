@@ -20,6 +20,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -75,7 +76,7 @@ def ex_close(win):
     with open("Files/Player Data/Tabs.json",'w') as fin_tab_son:
         tab_son_data["Daily"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, target_height, window_width, step=10, delay=1)
 
 with open("Files/Checks/Daily_time_check.csv", 'r') as Daily_date_check_file:
@@ -123,7 +124,7 @@ if full_check==False:
         tab_son_data["Daily"]='Open'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
 
-    subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
     window = Tk()
 
@@ -136,9 +137,9 @@ if full_check==False:
 
     window.configure(bg = "#FFFFFF")
     set_data=thesystem.misc.return_settings()
-transp_value=set_data["Settings"]["Transparency"]
+    transp_value=set_data["Settings"]["Transparency"]
 
-window.attributes('-alpha',transp_value)
+    window.attributes('-alpha',transp_value)
     window.overrideredirect(True)
     window.wm_attributes("-topmost", True)
 
@@ -421,7 +422,7 @@ window.attributes('-alpha',transp_value)
         height=20.0
     )
     def update_pushup():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         #global pushup_txt
         current_text=int((((canvas.itemcget(pushup_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Push"]+=1
@@ -429,7 +430,7 @@ window.attributes('-alpha',transp_value)
         canvas.itemconfig(pushup_txt, text=f"[{current_text+1}/{fl_push}]")
 
     def update_situp():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         #global situp_txt
         current_text=int((((canvas.itemcget(situp_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Sit"]+=1
@@ -437,7 +438,7 @@ window.attributes('-alpha',transp_value)
         canvas.itemconfig(situp_txt, text=f"[{current_text+1}/{fl_sit}]")
 
     def update_sqat():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         #global situp_txt
         current_text=int((((canvas.itemcget(squat_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Squat"]+=1
@@ -445,7 +446,7 @@ window.attributes('-alpha',transp_value)
         canvas.itemconfig(squat_txt, text=f"[{current_text+1}/{fl_sit}]")
 
     def update_run():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         #global run_txt
         current_text=float((((canvas.itemcget(run_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Run"]+=0.5
@@ -453,7 +454,7 @@ window.attributes('-alpha',transp_value)
         canvas.itemconfig(run_txt, text=f"[{current_text+0.5}/{fl_run}]")
 
     def update_int():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         #global int_txt
         current_text=float((((canvas.itemcget(int_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Int_type"]+=0.5
@@ -461,7 +462,7 @@ window.attributes('-alpha',transp_value)
         canvas.itemconfig(int_txt, text=f"[{current_text+0.5}/{fl_int}]")
 
     def update_sleep():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         #global sleep_txt
         current_text=int((((canvas.itemcget(sleep_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Sleep"]+=1
@@ -556,5 +557,5 @@ elif full_check==True:
         with open("Files/Temp Files/Daily Rewards.csv", 'w', newline='') as rew_csv_open:
             rew_fw=csv.writer(rew_csv_open)
             rew_fw.writerow(["Reward"])
-        subprocess.Popen(['python', 'Manwha Version/Daily Quest Rewards/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Manwha Version/Daily Quest Rewards/gui.py')])
 

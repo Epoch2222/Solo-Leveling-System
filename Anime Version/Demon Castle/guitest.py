@@ -317,7 +317,7 @@ class Castle3D(OpenGLFrame):
                 p['life'] = random.uniform(1, 5)
             
             # 3. Draw the particle
-            glVertex3fv(p['pos'])
+            glVertex3fv(p['pos')])
         glEnd()
 
 
@@ -351,7 +351,7 @@ class Castle3D(OpenGLFrame):
             is_highlighted = (floor['num'] == self.current_scroll_floor)
             glPushMatrix()
             glTranslatef(0, floor['y_center'], 0)
-            glScalef(floor['width'], floor['height'], floor['depth'])
+            glScalef(floor['width'], floor['height'], floor['depth')])
             draw_building_block(size=1.0, window_size=0.15, window_spacing=0.2, highlight=is_highlighted)
             glPopMatrix()
 

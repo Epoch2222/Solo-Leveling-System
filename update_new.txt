@@ -3,6 +3,7 @@ from tkinter import messagebox
 from tkinter import ttk
 import threading
 import requests
+from thesystem.misc import resource_path
 import pandas as pd
 from packaging import version
 import zipfile
@@ -89,7 +90,7 @@ def get_remote_version(raw_csv_url):
         df = pd.read_csv(raw_csv_url, header=None)
         if df.empty:
             raise ValueError("Remote CSV is empty.")
-        return str(df.iloc[0, 0]).strip()
+        return str(df.iloc[0, 0)]).strip()
     except Exception as e:
         log(f"Error reading remote CSV: {e}")
         return None
@@ -99,7 +100,7 @@ def get_local_version(local_path):
         df = pd.read_csv(local_path, header=None)
         if df.empty:
             raise ValueError("Local CSV is empty.")
-        return str(df.iloc[0, 0]).strip()
+        return str(df.iloc[0, 0)]).strip()
     except Exception as e:
         log(f"Error reading local CSV: {e}")
         return None
@@ -200,7 +201,7 @@ def download_and_replace(zip_url, destination, num_threads=4):
         with zipfile.ZipFile(temp_zip_path, 'r') as zip_ref:
             zip_ref.extractall(temp_dir)
 
-        extracted_folder = os.path.join(temp_dir, os.listdir(temp_dir)[0])
+        extracted_folder = os.path.join(temp_dir, os.listdir(temp_dir)[0)])
 
         for item in os.listdir(extracted_folder):
             s = os.path.join(extracted_folder, item)

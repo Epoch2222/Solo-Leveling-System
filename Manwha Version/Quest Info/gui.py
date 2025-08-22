@@ -16,6 +16,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -26,7 +27,7 @@ sys.path.insert(0, project_root)
 import thesystem.system
 import thesystem.quests
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window = Tk()
 
@@ -740,7 +741,7 @@ elif typeof == "Common":
         ex_tr_txt=canvas.itemcget(ex_txt, "text")
         new_1=int(ex_tr_txt)+1
         be_new_1=f"{new_1}"
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         canvas.itemconfig(ex_txt, text=be_new_1)
 
         if int(new_1)==int(num):

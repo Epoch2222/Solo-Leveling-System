@@ -15,6 +15,7 @@ import time
 import math
 import json
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '../../'))
@@ -386,9 +387,9 @@ class DungeonSystem:
         stop_event.set()
         update_thread.join()
         threading.Thread(target=thesystem.system.fade_out, args=(self.window, 0.8)).start()
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
         thesystem.system.animate_window_close(self.window, 0, self.window_width, step=20, delay=1)
-        subprocess.Popen(['python', 'Anime Version/Message/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Anime Version/Message/gui.py')])
         
     def start_dungeon(self):
         self.hide_activities_and_checkboxes()

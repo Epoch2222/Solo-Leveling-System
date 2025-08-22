@@ -13,6 +13,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -41,7 +42,7 @@ def relative_to_assets(path: str) -> Path:
 
 window = Tk()
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 initial_height = 0
 target_height = 479
@@ -82,7 +83,7 @@ def ex_close():
             ujson.dump(tab_son_data,fin_tab_son,indent=4)
 
     #threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, target_height, window_width, step=20, delay=1)
 
 def split_text(text, segment_length):
@@ -112,12 +113,12 @@ def open_select(cat):
     fw.writerow(rec)
     fout.close()
 
-    subprocess.Popen(['python', 'Manwha Version/Equip Item/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Manwha Version/Equip Item/gui.py')])
 
     ex_close()
 
 def set_effect_open():
-    subprocess.Popen(['python', 'Manwha Version/Set Effects/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Manwha Version/Set Effects/gui.py')])
 
 canvas = Canvas(
     window,

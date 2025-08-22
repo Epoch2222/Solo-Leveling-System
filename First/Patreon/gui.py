@@ -33,7 +33,7 @@ def relative_to_assets(path: str) -> Path:
 
 
 window = Tk()
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 initial_height = 0
 target_height = 144
@@ -66,7 +66,7 @@ def move_window(event):
 
 def ex_close(win):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, 0, window_width, step=30, delay=1)
 
 canvas = Canvas(

@@ -24,6 +24,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 import thesystem.misc as misc
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame1")
@@ -40,7 +41,7 @@ def up():
     screen_tr_txt=canvas_1.itemcget(screen_txt, "text")
     av_tr_txt=canvas_1.itemcget(av_txt, "text")
     if int(av_tr_txt)!=0:
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         new=int(screen_tr_txt)+1
         be_new=f"{new:03d}"
         canvas_1.itemconfig(screen_txt, text=be_new)
@@ -55,7 +56,7 @@ def down():
     screen_tr_txt=canvas_1.itemcget(screen_txt, "text")
     av_tr_txt=canvas_1.itemcget(av_txt, "text")
     if int(screen_tr_txt)!=0:
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         new=int(screen_tr_txt)-1
         be_new=f"{new:03d}"
         canvas_1.itemconfig(screen_txt, text=be_new)
@@ -99,16 +100,16 @@ def confirm():
     with open("Files/Player Data/Skill.json", 'w') as fin_skill:
         ujson.dump(data_main, fin_skill, indent=6)
 
-    subprocess.Popen(['python', 'Anime Version/Skill Info/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Anime Version/Skill Info/gui.py')])
 
     window.quit()
 
 def goback():
-    subprocess.Popen(['python', 'Anime Version/Skill Info/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Anime Version/Skill Info/gui.py')])
 
     window.quit()
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window = Tk()
 

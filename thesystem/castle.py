@@ -5,6 +5,8 @@ import tkinter
 import csv
 import thesystem.system
 import threading
+import sys
+from thesystem.misc import resource_path
 
 def get_priority_key_and_value(contents):
     """
@@ -105,7 +107,7 @@ def load_image_visibility(file_path, run_once_val, total_images=50, hidden_perce
         if 'hidden_images' in data:
             val=True
             #print(f"Loaded hidden images from file: {data['hidden_images']}")  # Debug
-            #print(list(data['hidden_images']))
+            #print(list(data['hidden_images')]))
             return [list(data['hidden_images']), floor]
     
     except:
@@ -152,7 +154,7 @@ def demon_fight(canvas_name,window):
     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
         theme_data=ujson.load(themefile)
         theme=theme_data["Theme"]
-    subprocess.Popen(['python', f'{theme} Version/Demon Castle/gui1.py'])
+    subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Demon Castle/gui1.py')])
     ex_close(window)
 
 def ex_close(win):
@@ -162,7 +164,7 @@ def ex_close(win):
     with open("Files/Player Data/Tabs.json",'w') as fin_tab_son:
         tab_son_data["Castle"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(win, win.winfo_width(), win.winfo_height(), step=50, delay=1)
 
 def reward_castle():
@@ -187,7 +189,7 @@ def reward_castle():
     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
         theme_data=ujson.load(themefile)
         theme=theme_data["Theme"]
-    subprocess.Popen(['python', f"{theme} Version/Leveled up/gui.py"])
+    subprocess.Popen([sys.executable, resource_path(f"{theme} Version/Leveled up/gui.py")])
 
     with open("Files/Player Data/Inventory.json", 'r') as fson:
         data_fininv=ujson.load(fson)
@@ -210,7 +212,7 @@ def reward_castle():
     with open("Files/Player Data/Inventory.json", 'w') as finaladdon:
         ujson.dump(data_fininv, finaladdon, indent=6)
 
-    subprocess.Popen(['python', "Anime Version/Demon Castle/gui.py"])
+    subprocess.Popen([sys.executable, resource_path("Anime Version/Demon Castle/gui.py")])
 
 def choose_demon_by_rank(rank_of):
     with open("Files/Player Data/Demon_Data.json", "r") as demon_file:

@@ -23,6 +23,7 @@ sys.path.insert(0, project_root)
 import thesystem.dungeon
 import thesystem.system
 import thesystem.misc
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -373,9 +374,9 @@ class DungeonSystem:
     def ex_close(self):
         stop_event.set()
         threading.Thread(target=thesystem.system.fade_out, args=(self.window, 0.8)).start()
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
         thesystem.system.animate_window_close(self.window, 0, self.window_width, step=20, delay=1)
-        subprocess.Popen(['python', 'Manwha Version/Message/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Manwha Version/Message/gui.py')])
         
     def start_dungeon(self):
         self.hide_activities_and_checkboxes()

@@ -6,6 +6,7 @@ import subprocess
 import ujson
 import os
 import numpy as np
+from thesystem.misc import resource_path
 import threading
 import ctypes
 import sys
@@ -63,7 +64,7 @@ def move_window(event):
 # Check and request admin rights
 # thesystem.penalty.run_as_admin()
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 with open("Files/Player Data/Penalty_Info.json", "r") as pen_info_file:
     pen_info_data = ujson.load(pen_info_file)
@@ -98,7 +99,7 @@ def close_programs_if_open(program_name1, program_name2):
             pass
 
 def ex_close(eve):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=5, delay=1)
 
 

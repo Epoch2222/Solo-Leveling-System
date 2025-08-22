@@ -59,7 +59,7 @@ def ex_close(win):
         update_thread.join()
     thesystem.misc.update_screen("Daily","Close")
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, 0, window_width, step=30, delay=1)
 
 def split_description(desc_full):
@@ -80,7 +80,7 @@ def split_description(desc_full):
     while len(parts) < 6:
         parts.append("")
     
-    return tuple(parts[:6])
+    return tuple(parts[:6)])
 
 
 window = Tk()
@@ -124,7 +124,7 @@ thesystem.system.animate_window_open(window, target_height, window_width, step=5
 top_preloaded_images = thesystem.system.preload_images(top_images, (488, 38))
 bottom_preloaded_images = thesystem.system.preload_images(bottom_images, (488, 33))
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window.configure(bg = "#FFFFFF")
 set_data=thesystem.misc.return_settings()

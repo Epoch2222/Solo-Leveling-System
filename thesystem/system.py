@@ -41,12 +41,12 @@ def fin_pen():
     with open("Files/Player Data/Settings.json", 'r') as settings_open:
         setting_data=ujson.load(settings_open)
     if yesterday==p_date and status=="UNDONE" and setting_data["Settings"]["Main_Penalty"]!="False":
-        subprocess.Popen(['python', f'{theme} Version/Penalty Quest/gui.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/Penalty Quest/gui.py')])
         with open('Files/Checks/Daily_time_check.csv', 'w', newline='') as fout_final:
             fout_final_wr=csv.writer(fout_final)
             fout_final_wr.writerow([dates,"DONE","Complete"])
     elif yesterday!=p_date or status=="UNDONE" and setting_data["Settings"]["Main_Penalty"]!="False":
-        subprocess.Popen(['python', f'{theme} Version/Penalty Quest/gui.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/Penalty Quest/gui.py')])
         with open('Files/Checks/Daily_time_check.csv', 'w', newline='') as fout_final:
             fout_final_wr=csv.writer(fout_final)
             fout_final_wr.writerow([dates,"DONE","Complete"])
@@ -96,7 +96,7 @@ def fin_pen():
 
     current_time = time.time()
     if cal_pen and (current_time - last_run > cooldown):
-        subprocess.Popen(['python', 'First/Calorie Penalty/gui.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('First/Calorie Penalty/gui.py'))])
         last_run = current_time  # Update the last run time
 
     '''
@@ -158,7 +158,7 @@ def run_once_prog(stp_eve, thrd):
     if first_run_file_check==True and second_run_file_check==True:
         requirements_file='requirements.txt'
         #try:
-        #    subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-r', requirements_file])
+        #    subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-r', requirements_file)])
         #    print(f"Installed packages from {requirements_file} successfully.")
         #except subprocess.CalledProcessError as e:
         #    print(f"Failed to install packages from {requirements_file}. Error: {e}")
@@ -167,7 +167,7 @@ def run_once_prog(stp_eve, thrd):
         # Wait for the thread to finish
         thrd.join()
     
-        subprocess.Popen(['python', 'First/Check/gui.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('First/Check/gui.py')])
 
         sys.exit()
     
@@ -177,7 +177,7 @@ def run_once_prog(stp_eve, thrd):
         # Wait for the thread to finish
         thrd.join()
 
-        subprocess.Popen(['python', 'First/Check/gui.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('First/Check/gui.py')])
 
         sys.exit()
 
@@ -620,7 +620,7 @@ def animate_window_open(window,target_height: int, width: int, step: int = 2, de
 
     # --- Trigger one-time effect at 20% progress ---
     if not threshold_triggered and current_height < 0.2 * target_height <= new_height:
-        # Example trigger: subprocess.Popen(['python', 'Files\\Mod\\default\\sfx.py'])
+        # Example trigger: subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files\\Mod\\default\\sfx.py'))])
         threshold_triggered = True
 
     # --- Schedule next frame ---
@@ -932,7 +932,7 @@ def set_preview_temp(o_name1,qt1):
     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
             theme_data=ujson.load(themefile)
             theme=theme_data["Theme"]
-    subprocess.Popen(['python', f'{theme} Version/Item Data/gui.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/Item Data/gui.py')])
 
 def center_window(root, width, height):
     # Get screen width and height
@@ -960,7 +960,7 @@ def update_penalty_countdown(duration_seconds, countdown_label, canvas, window):
             with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
                 theme_data = ujson.load(themefile)
                 theme = theme_data["Theme"]
-            subprocess.Popen(['python', f'{theme} Version/Penalty Quest Rewards/gui.py'])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/Penalty Quest Rewards/gui.py')])
             window.quit()
             return
 
@@ -1075,12 +1075,12 @@ def rank_up(old_lvl, new_lvl):
     old_rank=give_ranking(old_lvl)
     new_rank=give_ranking(new_lvl)
     if old_rank==new_rank:
-        subprocess.Popen(['python', f'{theme} Version/Leveled up/gui.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/Leveled up/gui.py')])
     else:
         with open("Files/Temp Files/Rank file.csv", "w", newline="") as f:
             writer=csv.writer(f)
             writer.writerow([f"{old_lvl}"])
-        subprocess.Popen(['python', f'{theme} Version/Rank up/gui.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/Rank up/gui.py')])
 
 def rank_up_skill(name_of_skill, old_level):
     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
@@ -1090,14 +1090,14 @@ def rank_up_skill(name_of_skill, old_level):
     with open("Files/Temp Files/Skill file.csv", "w", newline="") as f:
         writer=csv.writer(f)
         writer.writerow([f"{name_of_skill}", f"{old_level}"])
-    subprocess.Popen(['python', f'{theme} Version/Skill Level up/gui.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/Skill Level up/gui.py')])
 
 def return_back_to_tab(loc,window):
     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
         theme_data=ujson.load(themefile)
         theme=theme_data["Theme"]
         fin_loc=f'{theme} Version/{loc}/gui.py'
-    subprocess.Popen(['python', fin_loc])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path(fin_loc)])
     window.quit()   
 
 def fade_out(window, alpha):
@@ -1165,7 +1165,7 @@ def message_open(message):
     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
         theme_data=ujson.load(themefile)
         theme=theme_data["Theme"]
-    subprocess.Popen(['python', f"{theme} Version/Message/gui.py"])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path(f"{theme} Version/Message/gui.py")])
 
 def resize_image_cv(image_path, size):
     """
@@ -1318,7 +1318,7 @@ def side_bar(image, size, alt=False):
         return None
 
 def info_open(message):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx.py')])
     fout=open('Files/Temp Files/help.csv', 'w', newline='')
     fw=csv.writer(fout)
     rec=[message]
@@ -1327,7 +1327,7 @@ def info_open(message):
     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
         theme_data=ujson.load(themefile)
         theme=theme_data["Theme"]
-    subprocess.Popen(['python', f"{theme} Version/Info/gui.py"])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path(f"{theme} Version/Info/gui.py")])
 
 def event_tracker():
     while True:
@@ -1349,7 +1349,7 @@ def event_tracker():
                     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
                         theme_data=ujson.load(themefile)
                         theme=theme_data["Theme"]
-                    subprocess.Popen(['python', f"{theme} Version/Urgent Quest PVE/gui.py"])
+                    subprocess.Popen([sys.executable, thesystem.misc.resource_path(f"{theme} Version/Urgent Quest PVE/gui.py")])
                 elif current_time > data[key]["time"]:
                     if data[key]["begun"]==False:
                         print()
@@ -1364,7 +1364,7 @@ def skill_message(skill_name):
         writer = csv.writer(f)
         writer.writerow([skill_name])
     
-    subprocess.Popen(['python', f'{theme} Version/Skill Use/gui.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/Skill Use/gui.py')])
 
 def skill_use(skill_name,cooldown, mana=0, skill_open=True):
     with open("Files/Player Data/Status.json", 'r') as f:
@@ -1464,7 +1464,7 @@ def skill_tracking_and_fatigue():
                     ujson.dump(status_data, f, indent=6)
 
             if fatigue_open==False:
-                subprocess.Popen(['python', f"{theme} Version/Fatigue/gui.py"])
+                subprocess.Popen([sys.executable, thesystem.misc.resource_path(f"{theme} Version/Fatigue/gui.py")])
                 fatigue_open=True
 
         if fat_percent<50:

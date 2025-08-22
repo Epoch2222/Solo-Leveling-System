@@ -23,8 +23,8 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 import thesystem.shop
-
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+import thesystem.misc
+subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx.py')])
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame1")

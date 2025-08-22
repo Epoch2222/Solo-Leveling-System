@@ -2,6 +2,8 @@ import ujson
 import subprocess
 from datetime import datetime
 import csv
+import sys
+from thesystem.misc import resource_path
 
 def dailys_init():
     with open("Files/Player Data/Daily_Quest.json", 'r') as daily_quest_file:
@@ -112,7 +114,7 @@ def daily_preview(window):
     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
         theme_data=ujson.load(themefile)
         theme=theme_data["Theme"]
-    subprocess.Popen(['python', f'{theme} Version/Daily Quest Rewards/gui.py'])
+    subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Daily Quest Rewards/gui.py')])
 
 def check_daily_comp(today_date_str, window):
     with open("Files/Player Data/Daily_Quest.json", 'r') as daily_quest_file:
@@ -188,7 +190,7 @@ def check_daily_comp(today_date_str, window):
                 with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
                     theme_data = ujson.load(themefile)
                     theme = theme_data["Theme"]
-                subprocess.Popen(['python', f'{theme} Version/Daily Quest Rewards/gui.py'])
+                subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Daily Quest Rewards/gui.py')])
 
                 # Close the daily quest tab
                 with open("Files/Player Data/Tabs.json", 'r') as tab_son:
@@ -248,7 +250,7 @@ def check_daily_comp(today_date_str, window):
                 with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
                     theme_data = ujson.load(themefile)
                     theme = theme_data["Theme"]
-                subprocess.Popen(['python', f'{theme} Version/Daily Quest Rewards/gui.py'])
+                subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Daily Quest Rewards/gui.py')])
 
                 # Close the daily quest tab
                 with open("Files/Player Data/Tabs.json", 'r') as tab_son:
@@ -309,7 +311,7 @@ def check_daily_comp(today_date_str, window):
                 with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
                     theme_data = ujson.load(themefile)
                     theme = theme_data["Theme"]
-                subprocess.Popen(['python', f'{theme} Version/Daily Quest Rewards/gui.py'])
+                subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Daily Quest Rewards/gui.py')])
 
                 # Close the daily quest tab
                 with open("Files/Player Data/Tabs.json", 'r') as tab_son:

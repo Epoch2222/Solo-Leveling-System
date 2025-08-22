@@ -25,8 +25,9 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 import thesystem.quests
+from thesystem.misc import resource_path
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -91,11 +92,11 @@ def ex_close(win):
     with open("Files/Player Data/Tabs.json",'w') as fin_tab_son:
         tab_son_data["Quest"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, target_height, window_width, step=30, delay=1)
 
 def questadd():
-    subprocess.Popen(['python', 'Manwha Version/Quest adder/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Manwha Version/Quest adder/gui.py')])
     ex_close(window)
 
 canvas.place(x = 0, y = 0)

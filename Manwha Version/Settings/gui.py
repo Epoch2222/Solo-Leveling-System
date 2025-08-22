@@ -18,6 +18,7 @@ import pandas as pd
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -41,7 +42,7 @@ with open("Files/Player Data/Tabs.json",'w') as fin_tab_son:
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window = Tk()
 
@@ -100,7 +101,7 @@ def theme_open():
         fw=csv.writer(info_open)
         fw.writerow(["True"])
         
-    subprocess.Popen(['python', 'First/Theme Check/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('First/Theme Check/gui.py')])
     ex_close(window)
 
 def info_open():
@@ -108,7 +109,7 @@ def info_open():
         fw=csv.writer(info_open)
         fw.writerow(["True"])
 
-    subprocess.Popen(['python', 'First/Info/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('First/Info/gui.py')])
     ex_close(window)
 
 def dailys_open():
@@ -116,7 +117,7 @@ def dailys_open():
         fw=csv.writer(info_open)
         fw.writerow(["True"])
 
-    subprocess.Popen(['python', 'First/Daily Quest Tweak/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('First/Daily Quest Tweak/gui.py')])
     ex_close(window)
 
 def penalty_open():
@@ -124,7 +125,7 @@ def penalty_open():
         fw=csv.writer(info_open)
         fw.writerow(["True"])
 
-    subprocess.Popen(['python', 'First/Penalty Tweak/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('First/Penalty Tweak/gui.py')])
     ex_close(window)
 
 def ex_close(win):
@@ -135,11 +136,11 @@ def ex_close(win):
         tab_son_data["Settings"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=20, delay=1)
 
 def apply_changes():
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_button.py')])
     with open("Files/Player Data/Settings.json", 'r') as settings_open:
         setting_data=ujson.load(settings_open)
     setting_data["Settings"]["Transparency"] = float(entry_3.get())

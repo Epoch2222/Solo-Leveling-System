@@ -24,6 +24,7 @@ project_root = os.path.abspath(os.path.join(current_dir, '../../'))
 sys.path.insert(0, project_root)
 
 import thesystem.system
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -58,7 +59,7 @@ top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (695, 3
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (702, 36), job, type_="bottom")
 
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window.geometry(f"{window_width}x{initial_height}")
 thesystem.system.make_window_transparent(window)
@@ -88,7 +89,7 @@ def move_window(event):
 
 def ex_close(eve):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=25, delay=1)
 
 
@@ -195,12 +196,8 @@ def fade_out_text(text_id, shadow_id, step=20):
     # Calculate the new color by reducing its brightness
     # This creates a fade-to-black effect.
     new_hex_val = f"#{step*8:02x}{0:02x}{0:02x}"
-    
-    try:
-        canvas.itemconfig(text_id, fill=new_hex_val)
-    except tk.TclError:
-        # This handles cases where the window is closed during animation
-        return
+
+    canvas.itemconfig(text_id, fill=new_hex_val)
 
     # Schedule the next step of the fade
     canvas.after(50, fade_out_text, text_id, shadow_id, step - 1)
@@ -209,7 +206,7 @@ def fade_out_text(text_id, shadow_id, step=20):
 def animate_dots(base_text, dot_count=0, loop_count=0, max_loops=3):
     """Animates the '...' at the end of the blue text."""
     if loop_count >= max_loops:
-        subprocess.Popen(['python', 'First/Info/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('First/Info/gui.py')])
         ex_close(window)
         return
 

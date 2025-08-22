@@ -7,6 +7,8 @@ from datetime import datetime, timedelta
 import random
 import threading
 import thesystem.system
+import sys
+from thesystem.misc import resource_path
 
 with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
     theme_data = ujson.load(themefile)
@@ -29,7 +31,7 @@ def ex_close(win):
         tab_son_data["Dungeons"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
     threading.Thread(target=system.fade_out, args=(win, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     system.animate_window_close(win, initial_height, window_width, step=20, delay=1)
 
 def check_fatigue(rank):
@@ -66,7 +68,7 @@ def open_e_dunfile(eve):
         with open("Files/Player Data/Todays_Dungeon.json", 'w') as final_dun_full:
             ujson.dump(dun_full_data, final_dun_full, indent=6)
 
-        subprocess.Popen(['python', f'{theme} Version/Dungeon Runs/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Dungeon Runs/gui.py')])
         ex_close(eve)
 
 def open_d_dunfile(eve):
@@ -87,7 +89,7 @@ def open_d_dunfile(eve):
         with open("Files/Player Data/Todays_Dungeon.json", 'w') as final_dun_full:
             ujson.dump(dun_full_data, final_dun_full, indent=6)
 
-        subprocess.Popen(['python', f'{theme} Version/Dungeon Runs/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Dungeon Runs/gui.py')])
         ex_close(eve)
 
 def open_c_dunfile(eve):
@@ -108,7 +110,7 @@ def open_c_dunfile(eve):
         with open("Files/Player Data/Todays_Dungeon.json", 'w') as final_dun_full:
             ujson.dump(dun_full_data, final_dun_full, indent=6)
 
-        subprocess.Popen(['python', f'{theme} Version/Dungeon Runs/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Dungeon Runs/gui.py')])
         ex_close(eve)
 
 def open_b_dunfile(eve):
@@ -129,7 +131,7 @@ def open_b_dunfile(eve):
         with open("Files/Player Data/Todays_Dungeon.json", 'w') as final_dun_full:
             ujson.dump(dun_full_data, final_dun_full, indent=6)
 
-        subprocess.Popen(['python', f'{theme} Version/Dungeon Runs/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Dungeon Runs/gui.py')])
         ex_close(eve)
 
 def open_a_dunfile(eve):
@@ -150,7 +152,7 @@ def open_a_dunfile(eve):
         with open("Files/Player Data/Todays_Dungeon.json", 'w') as final_dun_full:
             ujson.dump(dun_full_data, final_dun_full, indent=6)
 
-        subprocess.Popen(['python', f'{theme} Version/Dungeon Runs/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Dungeon Runs/gui.py')])
         ex_close(eve)
 
 def open_s_dunfile(eve):
@@ -171,7 +173,7 @@ def open_s_dunfile(eve):
         with open("Files/Player Data/Todays_Dungeon.json", 'w') as final_dun_full:
             ujson.dump(dun_full_data, final_dun_full, indent=6)
 
-        subprocess.Popen(['python', f'{theme} Version/Dungeon Runs/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Dungeon Runs/gui.py')])
         ex_close(eve)
 
 rank_order = {'E': 1, 'D': 2, 'C': 3, 'B': 4, 'A': 5, 'S': 6}
@@ -219,13 +221,13 @@ def instance_dungeon(eve):
             rank=item_data.get('rank', '')
         fat_check=check_fatigue(rank)
         if fat_check==False:
-            subprocess.Popen(['python', f'{theme} Version/Instance Dungeon Confirm/gui.py'])
+            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Instance Dungeon Confirm/gui.py')])
             ex_close(eve)
     else:
         with open("Files/Checks/Message.csv", 'w', newline='') as check_file:
             check_fw = csv.writer(check_file)
             check_fw.writerow(["No Instance Keys"])
-        subprocess.Popen(['python', f'{theme} Version/Message/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Message/gui.py')])
 
 def get_item_name_from_csv():
     # Read the item name from the CSV file
@@ -271,7 +273,7 @@ def update_inventory(window):
     with open("Files/Player Data/Todays_Dungeon.json", 'w') as final_dun_full:
         ujson.dump(dun_full_data, final_dun_full, indent=6)
 
-    subprocess.Popen(['python', 'Manwha Version/Dungeon Runs/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Manwha Version/Dungeon Runs/gui.py')])
     window.quit()
 
 def dun_check():

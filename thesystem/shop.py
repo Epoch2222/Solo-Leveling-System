@@ -2,6 +2,8 @@ import random
 import ujson
 import subprocess
 import thesystem.system
+import sys
+from thesystem.misc import resource_path
 
 def quests_add(rank, vals, read_status_file_data, window):
     ab_points = ["STR", "AGI", "VIT", "INT", "PER", "MAN"]
@@ -82,7 +84,7 @@ def quests_add(rank, vals, read_status_file_data, window):
             quest_main_names = ujson.load(f)
         quest_main_keys = list(quest_main_names.keys())
         final_quest_main_name = random.choice(quest_main_keys) if quest_main_keys else ""
-        details = quest_main_names.get(final_quest_main_name, [{}])[0]
+        details = quest_main_names.get(final_quest_main_name, [])[0]
 
         # --- Build Rewards Dictionary ---
         rew_dict = {rew1: 1}
@@ -148,7 +150,10 @@ def quests_add(rank, vals, read_status_file_data, window):
             addition = abs(vals) * percentile
 
         # --- Update Status ---
-        read_status_file_data["status"][0]['coins'] -= int(vals-addition)
+        # # Convert the current coins to an int before subtracting
+        current_coins = int(read_status_file_data["status"][0]['coins'])
+        amount_to_subtract = int(vals) - addition # Also ensure 'vals' is an int
+        read_status_file_data["status"][0]['coins'] = current_coins - amount_to_subtract
         with open("Files/Player Data/Status.json", 'w') as f:
             ujson.dump(read_status_file_data, f, indent=4)
 
@@ -168,6 +173,6 @@ def quests_add(rank, vals, read_status_file_data, window):
             ujson.dump(tab_son_data, fin_tab_son, indent=4)
 
         inv_name = f"{theme} Version/Shop/gui.py"
-        subprocess.Popen(['python', inv_name])
+        subprocess.Popen([sys.executable, resource_path(inv_name)])
 
     window.quit()

@@ -16,6 +16,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -53,11 +54,11 @@ def move_window(event):
 
 
 def ex_close(win):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
-    subprocess.Popen(['python', 'Manwha Version\Equipment\gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
+    subprocess.Popen([sys.executable, resource_path('Manwha Version\Equipment\gui.py')])
     thesystem.system.animate_window_close(window, target_height, window_width, step=30, delay=1)
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window = Tk()
 

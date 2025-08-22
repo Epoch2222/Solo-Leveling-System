@@ -17,6 +17,7 @@ import threading
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -29,7 +30,7 @@ import thesystem.system
 import thesystem.equipmentbk as equipment
 import thesystem.inventory
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -85,8 +86,8 @@ def move_window(event):
 
 def ex_close(win):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
-    subprocess.Popen(['python', 'Manwha Version/Inventory/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
+    subprocess.Popen([sys.executable, resource_path('Manwha Version/Inventory/gui.py')])
     thesystem.system.animate_window_close(window, 0, window_width, step=20, delay=1)
 typs='Item'
 

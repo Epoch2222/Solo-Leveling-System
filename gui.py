@@ -43,7 +43,7 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 if os.path.exists("thesystem/temp 7x2.txt"):
-    subprocess.Popen(['python', 'npy_creator.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('npy_creator.py')])
 
 def get_base_path():
     """Get the correct base path for file operations"""
@@ -91,7 +91,7 @@ if vow==False:
     thesystem.system.fix_7x()
     thesystem.system.replace_code_from_txt(r"thesystem\\update_txt.txt", "update.py")
     if os.path.exists("thesystem/temp 7x2.txt"):
-        subprocess.Popen(["python", "crash_fix.py"])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path("crash_fix.py")])
     
     thing=txt='None'
     stop_thread = False  # Global flag to control the thread
@@ -258,17 +258,17 @@ if vow==False:
             json.dump(data, stfson, indent=4)
 
         if abi=="STR":
-            subprocess.Popen(['python', f'{theme} Version/All Jobs/gui.py'])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/All Jobs/gui.py')])
         elif abi=="AGI":
-            subprocess.Popen(['python', f'{theme} Version/All Jobs/gui1.py'])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/All Jobs/gui1.py')])
         elif abi=="VIT":
-            subprocess.Popen(['python', f'{theme} Version/All Jobs/gui2.py'])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/All Jobs/gui2.py')])
         elif abi=="INT":
-            subprocess.Popen(['python', f'{theme} Version/All Jobs/gui3.py'])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/All Jobs/gui3.py')])
         elif abi=="PER":
-            subprocess.Popen(['python', f'{theme} Version/All Jobs/gui4.py'])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/All Jobs/gui4.py')])
         elif abi=="MAN":
-            subprocess.Popen(['python', f'{theme} Version/All Jobs/gui5.py'])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'{theme} Version/All Jobs/gui5.py')])
 
     def check_for_job():
         while not stop_event1.is_set():
@@ -283,7 +283,7 @@ if vow==False:
                     with open("Files/Player Data/Job_info.json", 'w') as fina_fson:
                         json.dump(data, fina_fson, indent=4)
             
-                    subprocess.Popen(['python', f'D:/Projects/System/{theme} Version/Accept Job Change/gui.py'])
+                    subprocess.Popen([sys.executable, thesystem.misc.resource_path(f'D:/Projects/System/{theme} Version/Accept Job Change/gui.py')])
                     canvas.itemconfig("job", state='normal')
                     timer_func()
                     stop_event1.set()
@@ -316,7 +316,7 @@ if vow==False:
     def open_home(event):
         global show_bar
 
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_button.py')])
         home_items = [
             "home", "home1", "home2", "home3", "home4", "home5", 
             "home6", "home7", "home8", "home9", "home10", "home11", 
@@ -344,7 +344,7 @@ if vow==False:
             show_bar = False
 
     def update_open(event):
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_button.py')])
         stop_event.set()
         stop_event0.set()
         stop_event1.set()
@@ -355,8 +355,8 @@ if vow==False:
 
         # Wait for the threads to finish
 
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
-        subprocess.Popen(['python', 'update.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_close.py')])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('update.py')])
         if os.path.exists("window_positions.json"):
             os.remove("window_positions.json")
         window.quit()
@@ -381,9 +381,9 @@ if vow==False:
             theme = get_theme()
             gui_path = os.path.join(f"{theme} Version", gui_subpath, "gui.py")
             
-            subprocess.Popen(['python', gui_path])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path(gui_path)])
             if play_sfx:
-                subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+                subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_button.py')])
 
     # Handlers for each tab
     def open_cal(e):        open_tab("Calories", "Calorie Input")
@@ -400,7 +400,7 @@ if vow==False:
     def shop_open(e):       open_tab("Shop", "Shop")
     
     def close_full(event):
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_button.py')])
         stop_event.set()
         stop_event0.set()
         stop_event1.set()
@@ -415,7 +415,7 @@ if vow==False:
         if os.path.exists("window_positions.json"):
             os.remove("window_positions.json")
 
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_close.py')])
         sys.exit()
 
     def intro(event):
@@ -433,8 +433,8 @@ if vow==False:
                 json.dump(tab_son_data,fin_tab_son,indent=4)
 
             inv_name=f"{theme} Version/Intro/gui.py"
-            subprocess.Popen(['python', inv_name])
-            subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path(inv_name)])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_button.py')])
 
     def show_job():
         canvas.itemconfig("job", state="normal")

@@ -25,6 +25,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 import thesystem.titleequip
+import thesystem.misc
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -50,8 +51,8 @@ def ex_close(win):
         stop_event.set()
         update_thread.join()
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
-    subprocess.Popen(['python', 'Anime Version/Status Tab/gui.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_close.py')])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Anime Version/Status Tab/gui.py')])
     thesystem.system.animate_window_close(window, 0, window_width, step=20, delay=1)
 
 
@@ -178,7 +179,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (580, 38), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (580, 33), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx.py')])
 
 canvas = Canvas(
     window,

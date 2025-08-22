@@ -20,7 +20,7 @@ window = Tk()
 
 # Configure the window
 window.geometry("1272x718")
-subprocess.Popen(['python', 'Files\Mod\default\sfx_glitch.py'])
+subprocess.Popen([sys.executable, resource_path('Files\Mod\default\sfx_glitch.py')])
 
 window.configure(bg="#000000")
 window.wm_attributes("-topmost", True)
@@ -62,7 +62,7 @@ if z<0:
     z=0
 
 if x==y or x>y:
-    subprocess.Popen(['python', 'Anime Version/Final Penalty/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Anime Version/Final Penalty/gui.py')])
     window.quit()
 
 # Create the canvas
@@ -78,7 +78,7 @@ canvas = Canvas(
 canvas.pack(fill="both", expand=True)
 
 def ex_close(eve):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     window.quit()
 
 # Load images

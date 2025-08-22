@@ -1,8 +1,19 @@
 import subprocess
 import ujson
 import time
+import sys
+import os
 
 import thesystem.system
+
+def resource_path(relative_path):
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 def return_status():
     with open("Files/Player Data/Status.json", 'r') as fson:
@@ -48,7 +59,7 @@ def voice_activate():
             data=ujson.load(fson)
             
         if data["Settings"]["Microphone"]=="True" and first_run==False:
-            subprocess.Popen(['python', 'voice.py'])
+            subprocess.Popen([sys.executable, resource_path('voice.py')])
             thesystem.system.info_open("Voice")
             first_run=True
         

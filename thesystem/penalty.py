@@ -4,6 +4,8 @@ import csv
 import thesystem.system
 import ctypes
 import sys
+import sys
+from thesystem.misc import resource_path
 
 def complete(entry_1, entry_2, window):
     hr=entry_1.get()
@@ -22,11 +24,11 @@ def complete(entry_1, entry_2, window):
         fw=csv.writer(first_open_check_file)
         fw.writerow(["True"])
 
-    subprocess.Popen(['python', 'gui.py'])
+    subprocess.Popen([sys.executable, resource_path('gui.py')])
     ex_close(window)
 
 def ex_close(window):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, window.winfo_height(), window.winfo_width(), step=30, delay=1)
 
 def is_admin():

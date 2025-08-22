@@ -10,6 +10,7 @@ import ctypes
 import sys
 import psutil
 import numpy as np
+from thesystem.misc import resource_path
 
 # Hosts modification-related imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -63,7 +64,7 @@ def close_programs_if_open(program_name1, program_name2):
     if program_name2 != "-":
         to_close.add(program_name2.lower())
 
-    for proc in psutil.process_iter(['name']):
+    for proc in psutil.process_iter(['name')]):
         try:
             pname = proc.info['name']
             if pname and pname.lower() in to_close:
@@ -74,7 +75,7 @@ def close_programs_if_open(program_name1, program_name2):
             pass
 
 def ex_close(eve):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=5, delay=1)
 
 canvas = Canvas(

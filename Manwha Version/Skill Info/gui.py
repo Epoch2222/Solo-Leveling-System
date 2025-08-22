@@ -16,6 +16,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -25,7 +26,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -64,7 +65,7 @@ def move_window(event):
 
 
 def ex_close(win):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, target_height, window_width, step=25, delay=1)
     win.quit()
 
@@ -214,7 +215,7 @@ def preview(nameob,quantity):
             fw=csv.writer(new_csv_open)
             rec=[nameob, quantity]
             fw.writerow(rec)
-        subprocess.Popen(['python', 'Manwha Version/Preview Item/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Manwha Version/Preview Item/gui.py')])
 
 def delete():
     with open("Files/Player Data/Skill.json", 'r') as fols:
@@ -225,13 +226,13 @@ def delete():
     with open("Files/Player Data/Skill.json", 'r') as fols:
         ujson.dump(skills, fols, indent=6)
 
-    subprocess.Popen(['python', 'Manwha Version/Skills Tab/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Manwha Version/Skills Tab/gui.py')])
 
     ex_close(window)
 
 def update():
     if lvl!="MAX":
-        subprocess.Popen(['python', 'Manwha Version/Skill Info/gui1.py'])
+        subprocess.Popen([sys.executable, resource_path('Manwha Version/Skill Info/gui1.py')])
 
         ex_close(window)
 
@@ -418,7 +419,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: (subprocess.Popen(['python', 'Manwha Version/Skills Tab/gui.py']),ex_close(window)),
+    command=lambda: (subprocess.Popen([sys.executable, resource_path('Manwha Version/Skills Tab/gui.py')]),ex_close(window)),
     relief="flat"
 )
 button_1.place(

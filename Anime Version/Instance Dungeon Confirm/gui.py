@@ -26,6 +26,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 import thesystem.dungeon
+from thesystem.misc import resource_path
 
 with open("Files/Mod/presets.json", 'r') as pres_file:
     pres_file_data=ujson.load(pres_file)
@@ -79,7 +80,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (715, 41), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (715, 41), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 def start_move(event):
     window.lastx, window.lasty = event.widget.winfo_pointerxy()
@@ -98,7 +99,7 @@ def ex_close(win):
         stop_event.set()
         update_thread.join()
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=35, delay=1)
 
 rank='X'

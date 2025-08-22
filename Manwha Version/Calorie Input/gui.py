@@ -17,6 +17,7 @@ import pandas as pd
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 import ujson
 import threading
 
@@ -38,7 +39,7 @@ def relative_to_assets(path: str) -> Path:
 
 
 window = Tk()
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 initial_height = 0
 target_height = 109
@@ -71,7 +72,7 @@ def move_window(event):
 
 def ex_close(eve):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=12, delay=1)
 
 canvas = Canvas(

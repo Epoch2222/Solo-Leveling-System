@@ -25,7 +25,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -78,7 +78,7 @@ canvas = Canvas(
 )
 
 def next(eve):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_button.py')])
     global slide
     if slide == 1:
         canvas.itemconfig("s1",state="hidden")
@@ -96,14 +96,14 @@ def next(eve):
         canvas.itemconfig("s4", state="hidden")
         canvas.itemconfig("s5", state="normal")
         canvas.itemconfig("s6", state="hidden")
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_glitch.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_glitch.py')])
 
 def keep(eve):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_button.py')])
     window.quit()
 
 def remove(eve):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_button.py')])
     
     file_path= "Files/Player Data/Vow_status.json"
     # Create the file

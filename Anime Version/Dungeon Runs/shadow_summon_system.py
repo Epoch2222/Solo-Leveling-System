@@ -635,11 +635,11 @@ class ShadowSummonSystem:
             while not stop_event.is_set():
                 # Update top image
                 self.image_index = (self.image_index + 1) % len(self.top_preloaded_images)
-                self.canvas.itemconfig(self.top_image, image=self.top_preloaded_images[self.image_index])
+                self.canvas.itemconfig(self.top_image, image=self.top_preloaded_images[self.image_index)])
 
                 # Update bottom image
                 self.bot_image_index = (self.bot_image_index + 1) % len(self.bottom_preloaded_images)
-                self.canvas.itemconfig(self.bottom_image, image=self.bottom_preloaded_images[self.bot_image_index])
+                self.canvas.itemconfig(self.bottom_image, image=self.bottom_preloaded_images[self.bot_image_index)])
 
                 # Sleep for animation timing (24 FPS)
                 time.sleep(1/24)
@@ -822,7 +822,7 @@ class ShadowSummonSystem:
             print(f"Error updating Tabs.json: {e}")
             
         threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
         thesystem.system.animate_window_close(window, initial_height, window_width, step=50, delay=1)
 
 # Shadow Manager class to handle summoned soldiers in dungeons
@@ -838,7 +838,7 @@ class ShadowManager:
         try:
             with open("Files/Player Data/Summons.json", 'r') as summon_file:
                 summons_data = json.load(summon_file)
-                return summons_data.get("summons", [])
+                return summons_data.get("summons", [)])
         except Exception as e:
             print(f"Error loading summons: {e}")
             return []
@@ -987,7 +987,7 @@ class ShadowManager:
                 # Increase loyalty (capped at 100%)
                 summon['loyalty'] = min(100, summon['loyalty'] + loyalty_gain)
                 
-                updated_summons.append(summon['name'])
+                updated_summons.append(summon['name')])
         
         # Save updated summons data
         try:
@@ -995,7 +995,7 @@ class ShadowManager:
                 summons_data = json.load(summon_file)
                 
             # Update summons in the data
-            for i, summon in enumerate(summons_data.get("summons", [])):
+            for i, summon in enumerate(summons_data.get("summons", [)])):
                 for updated_name in updated_summons:
                     if summon['name'] == updated_name:
                         # Find the updated summon data

@@ -17,6 +17,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -26,7 +27,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame2")
@@ -66,9 +67,9 @@ def move_window(event):
 
 
 def ex_close(win):
-    subprocess.Popen(['python', 'Manwha Version/Skills Tab/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Manwha Version/Skills Tab/gui.py')])
     thesystem.system.animate_window_close(window, target_height, window_width, step=40, delay=1)
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     win.quit()
 
 name1=name2=name3=name4=name5=name6='-'
@@ -115,7 +116,7 @@ def open_prog(name):
             rec=[name]
             fw.writerow(rec)
         
-        subprocess.Popen(['python', 'Manwha Version/Skill Info/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Manwha Version/Skill Info/gui.py')])
 
         window.quit()
 

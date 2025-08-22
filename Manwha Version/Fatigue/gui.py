@@ -18,6 +18,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 import time
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -64,7 +65,7 @@ window.overrideredirect(True)
 window.wm_attributes("-topmost", True)
 
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 def start_move(event):
     window.lastx, window.lasty = event.widget.winfo_pointerxy()
@@ -79,7 +80,7 @@ def move_window(event):
 
 def ex_close(win=0):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=35, delay=1)
 
 last_val=0
@@ -96,16 +97,16 @@ def fatigue_return():
         fatigue_max=stat_data["status"][0]["fatigue_max"]
         fatigue_percent=int((fatigue/fatigue_max)*100)
         if (last_val!=fatigue_percent) and (fatigue_percent<70):
-            subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+            subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         elif (fatigue_percent>=70 and fatigue_percent<90) and warn1==False:
-            subprocess.Popen(['python', 'Files/Mod/default/sfx_error.py'])
+            subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_error.py')])
             canvas.itemconfig(fat_val, fill="#FF0000")
             warn1=True
         elif (fatigue_percent>=70 and fatigue_percent<90):
-            subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+            subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
             canvas.itemconfig(fat_val, fill="#FF0000")
         elif fatigue_percent>=90:
-            subprocess.Popen(['python', 'Files/Mod/default/sfx_error.py'])
+            subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_error.py')])
             canvas.itemconfig(fat_val, fill="#FF0000")
         
         last_val=fatigue_percent

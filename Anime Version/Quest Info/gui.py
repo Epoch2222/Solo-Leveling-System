@@ -26,6 +26,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.quests
 import thesystem.system
+from thesystem.misc import resource_path
 
 window = Tk()
 
@@ -62,7 +63,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (957, 43), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (1026, 47), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window.configure(bg = transp_clr)
 set_data=thesystem.misc.return_settings()
@@ -86,7 +87,7 @@ def move_window(event):
 
 def ex_close(win):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=50, delay=1)
 
 
@@ -634,7 +635,7 @@ elif typeof == "Common":
         with open("Files/Temp Files/Quest Reminder.csv", 'w', newline='') as csv_open:
             writer=csv.writer(csv_open)
             writer.writerow([name, ex_tr_txt])
-        subprocess.Popen(['python', "Anime Version/Quest Reminder/gui.py"])
+        subprocess.Popen([sys.executable, resource_path("Anime Version/Quest Reminder/gui.py")])
         ex_close(0)
     
     with open("Files/Player Data/Active_Quests.json", 'r') as fson:
@@ -691,7 +692,7 @@ elif typeof == "Common":
         ex_tr_txt=canvas.itemcget(ex_txt, "text")
         new_1=int(ex_tr_txt)+1
         be_new_1=f"{new_1}"
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
         canvas.itemconfig(ex_txt, text=be_new_1)
         
 

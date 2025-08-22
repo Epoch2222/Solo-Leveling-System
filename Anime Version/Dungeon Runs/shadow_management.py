@@ -93,7 +93,7 @@ window.wm_attributes("-topmost", True)
 top_preloaded_images = thesystem.system.preload_images(top_images, (970, 40))
 bottom_preloaded_images = thesystem.system.preload_images(bottom_images, (970, 40))
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 def start_move(event):
     window.lastx, window.lasty = event.widget.winfo_pointerxy()
@@ -118,7 +118,7 @@ def ex_close():
         tab_son_data["Shadows"] = 'Close'
         ujson.dump(tab_son_data, fin_tab_son, indent=4)
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=50, delay=1)
 
 canvas = Canvas(
@@ -279,7 +279,7 @@ class ShadowManager:
             if os.path.exists("Files/Player Data/Summons.json"):
                 with open("Files/Player Data/Summons.json", 'r') as summon_file:
                     summons_data = json.load(summon_file)
-                    self.summons = summons_data.get("summons", [])
+                    self.summons = summons_data.get("summons", [)])
             else:
                 # Create default structure if it doesn't exist
                 default_data = {
@@ -922,8 +922,8 @@ class ShadowManager:
         summon_type = summon.get('type', 'Normal')
         summon_rank = summon.get('rank', 'E')
         
-        type_descriptions = descriptions.get(summon_type, descriptions['Normal'])
-        description = type_descriptions.get(summon_rank, type_descriptions['E'])
+        type_descriptions = descriptions.get(summon_type, descriptions['Normal')])
+        description = type_descriptions.get(summon_rank, type_descriptions['E')])
         
         # If Red rank, override description
         if summon_rank == "Red":

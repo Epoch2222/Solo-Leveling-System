@@ -60,33 +60,33 @@ def recognize_speech():
                 for keyword, value in COMMANDS.items():
                     if keyword in command:
                         print(f"Hotkey and command '{keyword}' detected. Output: {value}")
-                        subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+                        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_button.py')])
                         if value==1:
-                            subprocess.Popen(['python', f'{theme} Version/Status Tab/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Status Tab/gui.py')])
                         elif value==2:
-                            subprocess.Popen(['python', f'{theme} Version/Inventory/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Inventory/gui.py')])
                         elif value==3:
-                            subprocess.Popen(['python', f'{theme} Version/Quests/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Quests/gui.py')])
                         elif value==4:
-                            subprocess.Popen(['python', f'{theme} Version/Daily Quest/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Daily Quest/gui.py')])
                         elif value==5:
-                            subprocess.Popen(['python', f'{theme} Version/Skills Tab/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Skills Tab/gui.py')])
                         elif value==6:
-                            subprocess.Popen(['python', f'{theme} Version/Equipment/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Equipment/gui.py')])
                         elif value==8:
-                            subprocess.Popen(['python', f'{theme} Version/Dungeon/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Dungeon/gui.py')])
                         elif value==9:
-                            subprocess.Popen(['python', f'{theme} Version/Credits/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Credits/gui.py')])
                         elif value==10:
-                            subprocess.Popen(['python', f'{theme} Version/Settings/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Settings/gui.py')])
                         elif value==11:
-                            subprocess.Popen(['python', f'{theme} Version/Demon Castle/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Demon Castle/gui.py')])
                         elif value==12:
-                            subprocess.Popen(['python', f'{theme} Version/Shop/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Shop/gui.py')])
                         elif value==13:
-                            subprocess.Popen(['python', f'{theme} Version/Intro/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Intro/gui.py')])
                         elif value==14:
-                            subprocess.Popen(['python', f'{theme} Version/Fatigue/gui.py'])
+                            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Fatigue/gui.py')])
                         break  # Continue listening after processing the command
         except sr.UnknownValueError:
             pass  # Ignore unrecognized speech

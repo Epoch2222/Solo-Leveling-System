@@ -25,6 +25,7 @@ project_root = os.path.abspath(os.path.join(current_dir, '../../'))
 sys.path.insert(0, project_root)
 
 import thesystem.system
+from thesystem.misc import resource_path
 
 check=False
 
@@ -81,7 +82,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (957, 43), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (1026, 47), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 def start_move(event):
     window.lastx, window.lasty = event.widget.winfo_pointerxy()
@@ -253,13 +254,13 @@ def delete():
     with open("Files/Player Data/Skill.json", 'w') as fols:
         ujson.dump(skills, fols, indent=6)
 
-    subprocess.Popen(['python', 'Anime Version/Skills Tab/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Anime Version/Skills Tab/gui.py')])
 
     window.quit()
 
 def update():
     if lvl!="MAX":
-        subprocess.Popen(['python', 'Anime Version/Skill Info/gui1.py'])
+        subprocess.Popen([sys.executable, resource_path('Anime Version/Skill Info/gui1.py')])
 
         window.quit()
 
@@ -515,7 +516,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: (subprocess.Popen(['python', 'Anime Version/Skills Tab/gui.py']),window.quit()),
+    command=lambda: (subprocess.Popen([sys.executable, resource_path('Anime Version/Skills Tab/gui.py')]),window.quit()),
     relief="flat"
 )
 button_1.place(

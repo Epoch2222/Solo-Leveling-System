@@ -83,7 +83,7 @@ def ex_close(win):
         update_thread.join()
     thesystem.misc.update_screen("Daily","Close")
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, 0, window_width, step=30, delay=1)
 
 with open("Files/Checks/Daily_time_check.csv", 'r') as Daily_date_check_file:
@@ -160,7 +160,7 @@ if full_check==False:
     top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (488, 38), job, type_="top")
     bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (488, 33), job, type_="bottom")
 
-    subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx.py')])
 
     window.configure(bg = "#FFFFFF")
     set_data=thesystem.misc.return_settings()
@@ -450,7 +450,7 @@ if full_check==False:
     )
 
     def update_pushup():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_point.py')])
         #global pushup_txt
         current_text=int((((canvas.itemcget(pushup_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Push"]+=1
@@ -458,7 +458,7 @@ if full_check==False:
         canvas.itemconfig(pushup_txt, text=f"[{current_text+1}/{fl_push}]")
 
     def update_situp():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_point.py')])
         #global situp_txt
         current_text=int((((canvas.itemcget(situp_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Sit"]+=1
@@ -466,7 +466,7 @@ if full_check==False:
         canvas.itemconfig(situp_txt, text=f"[{current_text+1}/{fl_sit}]")
 
     def update_sqat():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_point.py')])
         #global situp_txt
         current_text=int((((canvas.itemcget(squat_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Squat"]+=1
@@ -474,7 +474,7 @@ if full_check==False:
         canvas.itemconfig(squat_txt, text=f"[{current_text+1}/{fl_sit}]")
 
     def update_run():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_point.py')])
         #global run_txt
         current_text=float((((canvas.itemcget(run_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Run"]+=0.5
@@ -482,7 +482,7 @@ if full_check==False:
         canvas.itemconfig(run_txt, text=f"[{current_text+0.5}/{fl_run}]")
 
     def update_int():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_point.py')])
         #global int_txt
         current_text=float((((canvas.itemcget(int_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Int_type"]+=0.5
@@ -490,7 +490,7 @@ if full_check==False:
         canvas.itemconfig(int_txt, text=f"[{current_text+0.5}/{fl_int}]")
 
     def update_sleep():
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_point.py')])
         #global sleep_txt
         current_text=int((((canvas.itemcget(sleep_txt, "text")).split("/"))[0])[1:])
         daily_quest_data["Player"]["Sleep"]+=1
@@ -651,4 +651,4 @@ elif full_check==True:
         with open("Files/Temp Files/Daily Rewards.csv", 'w', newline='') as rew_csv_open:
             rew_fw=csv.writer(rew_csv_open)
             rew_fw.writerow(["Reward"])
-        subprocess.Popen(['python', 'Anime Version/Daily Quest Rewards/gui.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Anime Version/Daily Quest Rewards/gui.py')])

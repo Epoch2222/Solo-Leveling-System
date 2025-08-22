@@ -19,6 +19,7 @@ import csv
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -49,7 +50,7 @@ def move_window(event):
 
 def ex_close(eve):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=20, delay=1)
 
 def get():
@@ -117,14 +118,14 @@ def get():
                 theme_data=ujson.load(themefile)
                 theme=theme_data["Theme"]
 
-            subprocess.Popen(['Python', f'{theme} Version/Settings/gui.py'])
+            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Settings/gui.py')])
             with open("Files/Checks/info_open.csv", 'w', newline='') as info_open:
                 fw=csv.writer(info_open)
                 fw.writerow(["False"])
             ex_close(window)
         
         else:
-            subprocess.Popen(['python', 'First/Daily Quest Tweak/gui.py'])
+            subprocess.Popen([sys.executable, resource_path('First/Daily Quest Tweak/gui.py')])
             ex_close(window)
 
 def only_numbers(char):
@@ -149,7 +150,7 @@ window_width = 867
 
 window.geometry(f"{window_width}x{initial_height}")
 thesystem.system.animate_window_open(window, target_height, window_width, step=40, delay=1)
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window.configure(bg = "#FFFFFF")
 set_data=thesystem.misc.return_settings()

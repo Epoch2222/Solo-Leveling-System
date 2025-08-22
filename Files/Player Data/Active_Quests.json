@@ -10,5 +10,61 @@
                         "LVLADD": 10
                   }
             }
+      ],
+      "A Ronin's Path to Peace": [
+            {
+                  "desc": "Suhayl and Stanely need you to defend the realm.",
+                  "amt": 3,
+                  "amtval": "(Approx 500ML) Glasses of Water.",
+                  "type": "Common",
+                  "rank": "D",
+                  "ID": 201387,
+                  "Rewards": {
+                        "Coin Bag 500": 1
+                  },
+                  "skill": "Water"
+            }
+      ],
+      "Invincible Stand of Platinum": [
+            {
+                  "desc": "Peyton and Tyrone have a quest for you.",
+                  "amt": 20,
+                  "amtval": "Reps",
+                  "type": "Common",
+                  "Areas": [
+                        "Chest",
+                        "Shoulder",
+                        "Arms",
+                        "Core"
+                  ],
+                  "rank": "D",
+                  "ID": 277045,
+                  "Rewards": {
+                        "Coin Bag 500": 1,
+                        "Coin Bag 300": 1
+                  },
+                  "skill": "Shoulder Tap Pushups"
+            }
+      ],
+      "Super Saiyan Ascension": [
+            {
+                  "desc": "Mark Gorman and Rational send you on a mission.",
+                  "amt": 15,
+                  "amtval": "Reps",
+                  "type": "Common",
+                  "Areas": [
+                        "Chest",
+                        "Shoulder",
+                        "Arms",
+                        "Core"
+                  ],
+                  "rank": "E",
+                  "ID": 374562,
+                  "Rewards": {
+                        "Coin Bag 300": 1,
+                        "Coin Bag 100": 1
+                  },
+                  "skill": "Shoulder Tap Pushups"
+            }
       ]
 }

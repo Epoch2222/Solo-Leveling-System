@@ -21,6 +21,7 @@ import pandas as pd
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -52,7 +53,7 @@ window_width = 355
 window.geometry(f"{window_width}x{initial_height}")
 thesystem.system.animate_window_open(window, target_height, window_width, step=40, delay=1)
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 window.configure(bg = "#FFFFFF")
 set_data=thesystem.misc.return_settings()
 transp_value=set_data["Settings"]["Transparency"]
@@ -81,12 +82,12 @@ def ex_close(eve):
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
 
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     stop_update_thread_func()
     thesystem.system.animate_window_close(window, initial_height, window_width, step=20, delay=1)
 
 def title_chng(event):
-    subprocess.Popen(['python', 'Manwha Version/Equip Title/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Manwha Version/Equip Title/gui.py')])
 
     ex_close(0)
 
@@ -174,8 +175,8 @@ def start_job(event):
         ujson.dump(data, fson, indent=4)
 
 def fatigue_window():
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
-    subprocess.Popen(['python', 'Manwha Version/Fatigue/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_button.py')])
+    subprocess.Popen([sys.executable, resource_path('Manwha Version/Fatigue/gui.py')])
 
 canvas = Canvas(
     window,
@@ -315,7 +316,7 @@ fin_xp=round(fin_list[1], 2)
 
 if re_check==True:
     try:
-        subprocess.Popen(["python", "Manwha Version/Status Tab/gui.py"])
+        subprocess.Popen([sys.executable, resource_path("Manwha Version/Status Tab/gui.py")])
         
         ex_close(0)
     except:
@@ -333,7 +334,7 @@ def update_stat(stat_name):
             data["status"][0][stat_name] += 1
             val=data["status"][0][stat_name]
             canvas.itemconfig(stat_text_widgets[stat_name], text=f"{val:03d}")
-            subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+            subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_point.py')])
             data["avail_eq"][0]["str_based" if stat_name in ["str", "agi", "vit"] else "int_based"] -= 1
             if stat_name=='vit':
                 data["status"][0]["fatigue_max"]+=20
@@ -350,7 +351,7 @@ def update_stat(stat_name):
         with open("Files/Temp Files/Urgent Temp.csv", 'w', newline='') as urgent_file:
             fr=csv.writer(urgent_file)
             fr.writerow([stat_name.upper()])
-        subprocess.Popen(['python', 'Manwha Version/Urgent Quest/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Manwha Version/Urgent Quest/gui.py')])
         ex_close(0)
 
 # / =================================================

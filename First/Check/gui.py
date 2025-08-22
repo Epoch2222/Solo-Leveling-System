@@ -17,6 +17,7 @@ import time
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -60,7 +61,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (695, 39), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (702, 36), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window.geometry(f"{window_width}x{initial_height}")
 thesystem.system.animate_window_open(window, target_height, window_width, step=20, delay=1)
@@ -87,7 +88,7 @@ def move_window(event):
 
 
 def ex_close(eve):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=30, delay=1)
 
 def prog():
@@ -109,7 +110,7 @@ def end_prog():
     window.quit()  # Uncomment this line if you want to close the window after 20 seconds
 
 def fin(a):
-    subprocess.Popen(['python', 'First/Congrats/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('First/Congrats/gui.py')])
     window.quit()
 
 def no(a):

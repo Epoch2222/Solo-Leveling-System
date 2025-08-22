@@ -77,7 +77,7 @@ top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (488, 3
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (609, 33), job, type_="bottom")
 
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx.py')])
 
 presets_data = thesystem.misc.load_ujson("Files/Mod/presets.json")
 
@@ -86,7 +86,7 @@ status_data = thesystem.misc.load_ujson("Files/Player Data/Status.json")
 job_data = thesystem.misc.load_ujson("Files/Player Data/Job_info.json")
 
 def title_chng(event):
-    subprocess.Popen(['python', 'Anime Version/Equip Title/gui.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Anime Version/Equip Title/gui.py')])
 
     ex_close(0)
 
@@ -114,7 +114,7 @@ def update_fatigue_text(canvas, fatigue_val):
         # Update canvas text only if fatigue value has changed
         if current_fatigue_percent != loaded_fatigue_value:
             canvas.itemconfig(fatigue_val, text=f"{current_fatigue_percent}%")
-            subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_point.py')])
             loaded_fatigue_value = current_fatigue_percent
 
         # Wait for 3 minutes before updating again
@@ -151,7 +151,7 @@ def update_tabs_ujson(status='Open'):
 def ex_close(event=None):
     update_tabs_ujson('Close')
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_close.py')])
     stop_update_thread_func()
     if setting_data["Settings"]["Performernce (ANIME):"] != "True":
         stop_event.set()
@@ -180,8 +180,8 @@ canvas = Canvas(window, bg="#FFFFFF", height=716, width=488, bd=0, highlightthic
 canvas.place(x=0, y=0)
 
 def fatigue_window():
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
-    subprocess.Popen(['python', 'Anime Version/Fatigue/gui.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_button.py')])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Anime Version/Fatigue/gui.py')])
 
 def start_move(event):
     window.lastx, window.lasty = event.widget.winfo_pointerxy()
@@ -270,7 +270,7 @@ fin_xp=round(fin_list[1], 2)
 
 if re_check==True:
     try:
-        subprocess.Popen(["python", "Anime Version/Status Tab/gui.py"])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path("Anime Version/Status Tab/gui.py")])
         
         ex_close(0)
     except:
@@ -287,7 +287,7 @@ def update_stat(stat_name):
             status_data["status"][0][stat_name] += 1
             val=status_data["status"][0][stat_name]
             canvas.itemconfig(stat_text_widgets[stat_name], text=f"{val:03d}")
-            subprocess.Popen(['python', 'Files/Mod/default/sfx_point.py'])
+            subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_point.py')])
             status_data["avail_eq"][0]["str_based" if stat_name in ["str", "agi", "vit"] else "int_based"] -= 1
             if stat_name=='vit':
                 status_data["status"][0]["fatigue_max"]+=20
@@ -304,7 +304,7 @@ def update_stat(stat_name):
         with open("Files/Temp Files/Urgent Temp.csv", 'w', newline='') as urgent_file:
             fr=csv.writer(urgent_file)
             fr.writerow([stat_name.upper()])
-        subprocess.Popen(['python', 'Anime Version/Urgent Quest/gui.py'])
+        subprocess.Popen([sys.executable, thesystem.misc.resource_path('Anime Version/Urgent Quest/gui.py')])
         ex_close(0)
 
 stat_buttons = {
@@ -616,7 +616,7 @@ button_7 = Button(
     image=button_image_7,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: subprocess.Popen(['python', 'Anime Version/Statistics/gui.py']),
+    command=lambda: subprocess.Popen([sys.executable, thesystem.misc.resource_path('Anime Version/Statistics/gui.py')]),
     relief="flat"
 )
 button_7.place(

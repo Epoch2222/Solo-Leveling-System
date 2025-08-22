@@ -26,8 +26,9 @@ sys.path.insert(0, project_root)
 
 import thesystem.quests
 import thesystem.system
+from thesystem.misc import resource_path
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -67,7 +68,7 @@ def move_window(event):
 
 
 def ex_close(win):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     win.quit()
 
 ft=13

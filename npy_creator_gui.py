@@ -10,6 +10,7 @@ style of the update.py file and starts automatically.
 import os
 import sys
 import numpy as np
+from thesystem.misc import resource_path
 from PIL import Image, ImageTk
 import time
 import threading

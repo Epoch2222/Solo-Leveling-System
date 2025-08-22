@@ -8,6 +8,8 @@ import cv2
 from PIL import Image, ImageTk
 import sys
 import os
+import sys
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -89,7 +91,7 @@ def handle_selection(val, name, cat, window, dat1, dat2, dat3, dat4, dat5):
             process_item_buffs(new_item_data[new_item_name][0], status_data, sign=1)
 
     save_ujson(STATUS_FILE, status_data)
-    subprocess.Popen(['python', 'Anime Version/Equipment/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Anime Version/Equipment/gui.py')])
     window.quit()
 
 def equip_item(cat,item_full_data, window):
@@ -315,7 +317,7 @@ def equip_item(cat,item_full_data, window):
                 tab_son_data=ujson.load(tab_son)
 
             if tab_son_data["Inventory"]=='Close':
-                subprocess.Popen(['python', f'{theme} Version/Equipment/gui.py'])
+                subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Equipment/gui.py')])
             window.quit()
 
     elif cat.upper()=="RUNE STONE":
@@ -384,7 +386,7 @@ def equip_item(cat,item_full_data, window):
         with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
             theme_data = ujson.load(themefile)
             theme = theme_data["Theme"]
-        subprocess.Popen(['python', f'{theme} Version/Inventory/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Inventory/gui.py')])
         window.quit()
 
     if cat=="ORDER":
@@ -392,7 +394,7 @@ def equip_item(cat,item_full_data, window):
             data_fininv=ujson.load(fson)
         del data_fininv["The Orb of Order"]
 
-        subprocess.Popen(['python', "First/The Order/gui.py"])
+        subprocess.Popen([sys.executable, resource_path("First/The Order/gui.py")])
         window.quit()
 
 

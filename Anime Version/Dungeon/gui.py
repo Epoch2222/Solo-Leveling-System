@@ -87,7 +87,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (490, 34), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (490, 34), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx.py')])
 presets_data = thesystem.misc.load_ujson("Files/Mod/presets.json")
 
 
@@ -116,7 +116,7 @@ def ex_close(win):
         tab_son_data["Dungeons"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=20, delay=1)
 
 e_rank,d_rank,c_rank,b_rank,a_rank,s_rank=thesystem.dungeon.dun_check()

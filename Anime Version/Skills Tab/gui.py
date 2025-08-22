@@ -26,6 +26,7 @@ project_root = os.path.abspath(os.path.join(current_dir, '../../'))
 sys.path.insert(0, project_root)
 
 import thesystem.system
+from thesystem.misc import resource_path
 
 
 OUTPUT_PATH = Path(__file__).parent
@@ -51,7 +52,7 @@ def ex_close(win):
         tab_son_data["Skill"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
     thesystem.system.animate_window_close(window, target_height, window_width, step=40, delay=1)
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     win.quit()
 
 stop_event=threading.Event()
@@ -94,7 +95,7 @@ top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (488, 3
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (609, 33), job, type_="bottom")
 
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 presets_data = thesystem.misc.load_ujson("Files/Mod/presets.json")
 
@@ -178,7 +179,7 @@ def open_prog(name):
             rec=[name]
             fw.writerow(rec)
 
-        subprocess.Popen(['python', 'Anime Version/Skill Info/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Anime Version/Skill Info/gui.py')])
 
         ex_close(window)
 

@@ -8,6 +8,8 @@ import thesystem.system
 from PIL import Image, ImageTk
 from datetime import datetime, timedelta, date
 import time
+import sys
+from thesystem.misc import resource_path
 
 def event_tracker():
     while True:
@@ -29,7 +31,7 @@ def event_tracker():
                     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
                         theme_data=ujson.load(themefile)
                         theme=theme_data["Theme"]
-                    subprocess.Popen(['python', f"{theme} Version/Urgent Quest PVE/gui.py"])
+                    subprocess.Popen([sys.executable, resource_path(f"{theme} Version/Urgent Quest PVE/gui.py")])
                 elif current_time > data[key]["time"]:
                     if data[key]["begun"]==False:
                         print()

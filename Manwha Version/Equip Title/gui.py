@@ -15,6 +15,7 @@ import ujson
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -112,7 +113,7 @@ with open("Files/Player Data/Titles.json", 'r') as fson:
     except:
         print("", end='')
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window = Tk()
 

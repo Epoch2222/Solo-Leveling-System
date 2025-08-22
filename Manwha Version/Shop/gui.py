@@ -16,6 +16,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -25,7 +26,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -102,7 +103,7 @@ def ex_close(win):
     with open("Files/Player Data/Tabs.json",'w') as fin_tab_son:
         tab_son_data["Shop"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     win.quit()
 
 with open("Files/Player Data/Status.json", 'r') as fson:
@@ -117,13 +118,13 @@ def open_prog(name, cat, rank, desc, value):
             rec=[name,cat,rank,desc,value]
             fw.writerow(rec)
 
-        subprocess.Popen(['python', 'Manwha Version/Shop/gui1.py'])
+        subprocess.Popen([sys.executable, resource_path('Manwha Version/Shop/gui1.py')])
 
         ex_close(window)
 
 def sell_tab():
     if lvl>=5:
-        subprocess.Popen(['python', 'Manwha Version/Shop Sell/gui1.py'])
+        subprocess.Popen([sys.executable, resource_path('Manwha Version/Shop Sell/gui1.py')])
 
         ex_close(window)
 

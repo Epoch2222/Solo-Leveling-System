@@ -4,6 +4,8 @@ from datetime import datetime, date
 import subprocess
 import thesystem.system
 import threading
+import sys
+from thesystem.misc import resource_path
 
 def add_cal(entry_1, window, initial_height, window_width):
     with open("Files/Data/Calorie_Count.json", 'r') as calorie_add_file:
@@ -32,5 +34,5 @@ def add_cal(entry_1, window, initial_height, window_width):
 
 def ex_close(window, initial_height, window_width):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=12, delay=1)

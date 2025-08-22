@@ -17,6 +17,7 @@ import time
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -59,7 +60,7 @@ top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (695, 3
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (702, 36), job, type_="bottom")
 
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window.geometry(f"{window_width}x{initial_height}")
 thesystem.system.make_window_transparent(window)
@@ -89,7 +90,7 @@ def move_window(event):
 
 def ex_close(eve):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=25, delay=1)
 
 def prog():
@@ -108,7 +109,7 @@ def show_third():
 
 def end_prog():
     canvas.itemconfig("Third", state="hidden")
-    subprocess.Popen(['python', 'First/Cartenon Temple/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('First/Cartenon Temple/gui.py')])
     window.quit()
 
 

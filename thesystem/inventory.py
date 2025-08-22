@@ -7,6 +7,8 @@ import threading
 import thesystem.system
 import csv
 import os
+import sys
+from thesystem.misc import resource_path
 
 def create_inventory_item(canvas, window, item_data, x, y, button_images, item_images, image5):
     tr_n = item_data.get('name', '')
@@ -48,7 +50,7 @@ def ex_close(win):
     with open("Files/Player Data/Tabs.json",'w') as fin_tab_son:
         tab_son_data["Inventory"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(win, win.winfo_height(), win.winfo_width(), step=40, delay=1)
 
 def inventory_name_cut(name):
@@ -73,7 +75,7 @@ def inventory_item_data(name,rank,category,t,r,s,window):
             with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
                 theme_data=ujson.load(themefile)
                 theme=theme_data["Theme"]
-            subprocess.Popen(['python', f'{theme} Version/Item Data/gui.py'])
+            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Item Data/gui.py')])
     
     except:
         print()
@@ -144,12 +146,12 @@ def selling_item(name,window,val):
         theme=theme_data["Theme"]
 
     if closing==True:
-        subprocess.Popen(['python', f'{theme} Version/Inventory/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Inventory/gui.py')])
 
         window.quit()
 
     else:
-        subprocess.Popen(['python', f'{theme} Version/Item Data/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Item Data/gui.py')])
 
         window.quit()
 

@@ -147,7 +147,7 @@ image_3 = canvas.create_image(
 )
 
 prog()
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window.resizable(False, False)
 window.mainloop()

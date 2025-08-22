@@ -4,6 +4,8 @@ import os
 import subprocess
 from datetime import datetime, timedelta, date
 import thesystem.system
+import sys
+from thesystem.misc import resource_path
 
 def skill_use(skill_name,cooldown):
     with open("Files/Player Data/Skill tracker.json", "r") as f:
@@ -78,7 +80,7 @@ def skill_tracking_and_fatigue():
                     ujson.dump(status_data, f, indent=6)
 
             if fatigue_open==False:
-                subprocess.Popen(['python', f"{theme} Version/Fatigue/gui.py"])
+                subprocess.Popen([sys.executable, resource_path(f"{theme} Version/Fatigue/gui.py")])
                 fatigue_open=True
 
         if fat_percent<50:

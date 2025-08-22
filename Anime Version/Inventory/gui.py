@@ -21,6 +21,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 import thesystem.inventory
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -79,7 +80,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (970, 40), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (970, 40), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 def start_move(event):
     window.lastx, window.lasty = event.widget.winfo_pointerxy()
@@ -105,7 +106,7 @@ def ex_close(win):
         tab_son_data["Inventory"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=50, delay=1)
 
 canvas = Canvas(
@@ -201,7 +202,7 @@ for i, key in enumerate(rol[:24]):
 #    image=button_image_25,
 #    borderwidth=0,
 #    highlightthickness=0,
-#    command=lambda: subprocess.Popen(['python', 'Anime Version/Inventory Addition/gui.py']),
+#    command=lambda: subprocess.Popen([sys.executable, resource_path('Anime Version/Inventory Addition/gui.py')]),
 #    relief="flat"
 #)
 #button_25.place(

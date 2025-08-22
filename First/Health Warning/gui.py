@@ -17,6 +17,7 @@ import ujson
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -36,7 +37,7 @@ def relative_to_assets(path: str) -> Path:
 
 window = Tk()
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 initial_height = 0
 target_height = 549
@@ -68,8 +69,8 @@ def move_window(event):
 
 
 def ex_close(eve):
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
-    subprocess.Popen(['python', 'First/Check/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
+    subprocess.Popen([sys.executable, resource_path('First/Check/gui.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=30, delay=1)
 
 canvas = Canvas(

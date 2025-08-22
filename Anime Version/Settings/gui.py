@@ -27,6 +27,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 import thesystem.settings as settings
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -84,7 +85,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (490, 34), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (490, 34), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 checkbox_var0 = IntVar(value=0)
 checkbox_var2 = IntVar(value=0)
@@ -146,7 +147,7 @@ def ex_close(win):
         tab_son_data["Settings"]='Close'
         ujson.dump(tab_son_data,fin_tab_son,indent=4)
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=20, delay=1)
 
 def theme_open():
@@ -154,7 +155,7 @@ def theme_open():
         fw=csv.writer(info_open)
         fw.writerow(["True"])
         
-    subprocess.Popen(['python', 'First/Theme Check/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('First/Theme Check/gui.py')])
     ex_close(window)
 
 def info_open():
@@ -162,7 +163,7 @@ def info_open():
         fw=csv.writer(info_open)
         fw.writerow(["True"])
 
-    subprocess.Popen(['python', 'First/Info/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('First/Info/gui.py')])
     ex_close(window)
 
 def dailys_open():
@@ -170,7 +171,7 @@ def dailys_open():
         fw=csv.writer(info_open)
         fw.writerow(["True"])
 
-    subprocess.Popen(['python', 'First/Daily Quest Tweak/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('First/Daily Quest Tweak/gui.py')])
     ex_close(window)
 
 def penalty_open():
@@ -178,11 +179,11 @@ def penalty_open():
         fw=csv.writer(info_open)
         fw.writerow(["True"])
 
-    subprocess.Popen(['python', 'First/Penalty Tweak/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('First/Penalty Tweak/gui.py')])
     ex_close(window)
 
 def apply_changes():
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_button.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_button.py')])
     with open("Files/Player Data/Settings.json", 'r') as settings_open:
         setting_data=ujson.load(settings_open)
     setting_data["Settings"]["Transparency"] = float(entry_3.get())

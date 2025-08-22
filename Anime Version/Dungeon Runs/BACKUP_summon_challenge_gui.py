@@ -368,9 +368,9 @@ class DungeonSystem:
         
     def update_images(self):
         self.image_index = (self.image_index + 1) % len(self.top_preloaded_images)
-        self.canvas.itemconfig(self.top_image, image=self.top_preloaded_images[self.image_index])
+        self.canvas.itemconfig(self.top_image, image=self.top_preloaded_images[self.image_index)])
         self.bot_image_index = (self.bot_image_index + 1) % len(self.bottom_preloaded_images)
-        self.canvas.itemconfig(self.bottom_image, image=self.bottom_preloaded_images[self.bot_image_index])
+        self.canvas.itemconfig(self.bottom_image, image=self.bottom_preloaded_images[self.bot_image_index)])
         self.window.after(1000 // 24, self.update_images)
         
     def start_move(self, event):
@@ -390,9 +390,9 @@ class DungeonSystem:
         stop_event.set()
         update_thread.join()
         threading.Thread(target=thesystem.system.fade_out, args=(self.window, 0.8)).start()
-        subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+        subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
         thesystem.system.animate_window_close(self.window, 0, self.window_width, step=20, delay=1)
-        subprocess.Popen(['python', 'Anime Version/Message/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('Anime Version/Message/gui.py')])
         
     def start_dungeon(self):
         self.hide_activities_and_checkboxes()
@@ -462,7 +462,7 @@ class DungeonSystem:
         elif self.rank == "S":
             base_waves = 10
             
-        wave_variation = random.choice([-1, 0, 0, 0, 1])
+        wave_variation = random.choice([-1, 0, 0, 0, 1)])
         total_waves = max(3, base_waves + wave_variation)
         self.total_waves = total_waves
         
@@ -634,7 +634,7 @@ class DungeonSystem:
             if 'Final' in self.waves:
                 self.show_boss_wave()
             else:
-                self.mob = int(list(self.waves.keys())[0])
+                self.mob = int(list(self.waves.keys())[0)])
                 wave_num = str(self.mob)
         
         self.canvas.itemconfig(self.waves_txt, text=f"[Wave - {wave_num}/{len(self.waves)}]")
@@ -816,7 +816,7 @@ class DungeonSystem:
                 activity_widgets = [self.activity1, self.activity2, self.activity3, self.activity4]
                 for idx in incomplete_indices:
                     self.canvas.itemconfig(activity_widgets[idx], fill="#FF0000")
-                self.window.after(500, lambda: [self.canvas.itemconfig(activity_widgets[idx], fill=self.normal_font_col) for idx in incomplete_indices])
+                self.window.after(500, lambda: [self.canvas.itemconfig(activity_widgets[idx], fill=self.normal_font_col) for idx in incomplete_indices)])
                 return
         
         # For non-boss waves, calculate completion percentage
@@ -1170,7 +1170,7 @@ class SkillSystem:
             self.skill_panel_title,
             self.close_panel_button,
             self.close_panel_x
-        ])
+        )])
         
         # Create a frame to hold the canvas and scrollbar
         self.skill_frame = Frame(self.parent.window, bg="#1E1E1E")
@@ -1418,7 +1418,7 @@ class SkillSystem:
             if modified_activities:
                 self.parent.window.after(3000, lambda widgets=modified_activities: 
                                     [self.parent.canvas.itemconfig(w, fill=self.parent.normal_font_col) 
-                                        for w in widgets])
+                                        for w in widgets)])
             
             # Feedback notification
             notification = self.parent.canvas.create_text(
@@ -1481,7 +1481,7 @@ class SkillSystem:
             if modified_activities:
                 self.parent.window.after(3000, lambda activities=modified_activities: 
                                     [self.parent.canvas.itemconfig(w[0], fill=self.parent.normal_font_col) 
-                                        for w in activities])
+                                        for w in activities)])
             
             # Feedback notification
             notification = self.parent.canvas.create_text(
@@ -1545,7 +1545,7 @@ class SkillSystem:
             if modified_activities:
                 self.parent.window.after(3000, lambda widgets=modified_activities: 
                                     [self.parent.canvas.itemconfig(w, fill=self.parent.normal_font_col) 
-                                        for w in widgets])
+                                        for w in widgets)])
             
             # Feedback notification
             count = len(modified_activities)
@@ -1608,7 +1608,7 @@ class ShadowManager:
             if os.path.exists("Files/Player Data/Summons.json"):
                 with open("Files/Player Data/Summons.json", 'r') as summon_file:
                     summons_data = json.load(summon_file)
-                    return summons_data.get("summons", [])
+                    return summons_data.get("summons", [)])
             else:
                 # Create default structure if it doesn't exist
                 default_data = {
@@ -1778,7 +1778,7 @@ class ShadowManager:
             
             # Pre-select active summons
             if is_active:
-                selected_summons.append(summon['name'])
+                selected_summons.append(summon['name')])
         
         # Update canvas scroll region
         inner_frame.update_idletasks()
@@ -1998,7 +1998,7 @@ class ShadowManager:
                         # Increase loyalty (capped at 100%)
                         summon['loyalty'] = min(100, summon.get('loyalty', 50) + loyalty_gain)
                         
-                        updated_summons.append(summon['name'])
+                        updated_summons.append(summon['name')])
                 
                 # Save updated summons data
                 with open("Files/Player Data/Summons.json", 'w') as summon_file:
@@ -2639,7 +2639,7 @@ def modify_dungeon_system():
                 json.dump(temp_data, f)
             
             # Launch the shadow extraction system
-            subprocess.Popen(['python', 'shadow_summon_system.py'])
+            subprocess.Popen([sys.executable, resource_path('shadow_summon_system.py')])
             
         except Exception as e:
             print(f"Error launching shadow extraction: {e}")
@@ -2735,7 +2735,7 @@ def modify_dungeon_system():
                 json.dump(temp_data, f)
             
             # Launch the shadow extraction system
-            subprocess.Popen(['python', 'Anime Version/Dungeon Runs/shadow_summon_system.py'])
+            subprocess.Popen([sys.executable, resource_path('Anime Version/Dungeon Runs/shadow_summon_system.py')])
             
         except Exception as e:
             print(f"Error launching shadow extraction: {e}")
@@ -2790,7 +2790,7 @@ def modify_dungeon_system1():
                     import re
                     numbers = re.findall(r'\d+', current_text)
                     if numbers:
-                        num = int(numbers[0])
+                        num = int(numbers[0)])
                         reduced_num = max(1, int(num * 0.8))  # 20% reduction
                         new_text = current_text.replace(str(num), str(reduced_num))
                         new_text += " [STR BUFF]"
@@ -2805,7 +2805,7 @@ def modify_dungeon_system1():
                     import re
                     numbers = re.findall(r'\d+', current_text)
                     if numbers:
-                        num = int(numbers[0])
+                        num = int(numbers[0)])
                         increased_num = int(num * 1.2)  # 20% increase
                         new_text = current_text.replace(str(num), str(increased_num))
                         new_text += " [AGI DEBUFF]"

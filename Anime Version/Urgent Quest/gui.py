@@ -18,6 +18,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -50,8 +51,8 @@ def ex_close(win):
     if setting_data["Settings"]["Performernce (ANIME):"] != "True":
         stop_event.set()
         update_thread.join()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
-    subprocess.Popen(['python', 'Anime Version/Status Tab/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
+    subprocess.Popen([sys.executable, resource_path('Anime Version/Status Tab/gui.py')])
     thesystem.system.animate_window_close(window, target_height, window_width, step=20, delay=1)
 
 window = Tk()
@@ -97,7 +98,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (1120, 47), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (1053, 43), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 def complete():
     with open("Files/Player Data/Ability_Check.json", 'r') as ability_check_file:

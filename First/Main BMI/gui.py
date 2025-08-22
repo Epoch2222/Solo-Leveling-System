@@ -43,8 +43,8 @@ def move_window(event):
 
 def ex_close(eve):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
-    subprocess.Popen(['python', 'First\Daily Quest Tweak\gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
+    subprocess.Popen([sys.executable, resource_path('First\Daily Quest Tweak\gui.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=30, delay=1)
 
 window = Tk()
@@ -55,7 +55,7 @@ window_width = 867
 
 window.geometry(f"{window_width}x{initial_height}")
 thesystem.system.animate_window_open(window, target_height, window_width, step=30, delay=1)
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 window.configure(bg = "#FFFFFF")
 set_data=thesystem.misc.return_settings()

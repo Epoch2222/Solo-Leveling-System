@@ -28,6 +28,7 @@ import thesystem.equipmentbk
 import thesystem.system
 import thesystem.inventory
 import thesystem.equipmentbk as equipment
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -86,7 +87,7 @@ bottom_images = f"thesystem/{all_prev}bottom_bar"
 top_preloaded_images = thesystem.system.load_or_cache_images(top_images, (970, 40), job, type_="top")
 bottom_preloaded_images = thesystem.system.load_or_cache_images(bottom_images, (970, 40), job, type_="bottom")
 
-subprocess.Popen(['python', 'Files/Mod/default/sfx.py'])
+subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
 def start_move(event):
     window.lastx, window.lasty = event.widget.winfo_pointerxy()
@@ -114,7 +115,7 @@ def ex_close():
             ujson.dump(tab_son_data,fin_tab_son,indent=4)
 
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, 0, window_width, step=20, delay=1)
 
 def split_text(text, segment_length):
@@ -144,12 +145,12 @@ def open_select(cat):
     fw.writerow(rec)
     fout.close()
 
-    subprocess.Popen(['python', 'Anime Version/Equip Item/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Anime Version/Equip Item/gui.py')])
 
     ex_close()
 
 def set_effect_open():
-    subprocess.Popen(['python', 'Anime Version/Set Effects/gui.py'])
+    subprocess.Popen([sys.executable, resource_path('Anime Version/Set Effects/gui.py')])
 
 canvas = Canvas(
     window,

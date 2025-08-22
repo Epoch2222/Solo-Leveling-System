@@ -8,12 +8,13 @@ the corresponding npy files with the correct dimensions and job types, plus proc
 """
 
 import os
-import sys
 import numpy as np
 from PIL import Image
 from pathlib import Path
 import time
 import cv2
+
+import sys
 
 def video_to_npy(video_path, output_path, resize_factor=None, rotate=False):
     """

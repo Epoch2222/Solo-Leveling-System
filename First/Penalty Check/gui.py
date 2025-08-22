@@ -18,6 +18,7 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
+from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -48,7 +49,7 @@ def move_window(event):
 
 def ex_close(eve):
     threading.Thread(target=thesystem.system.fade_out, args=(window, 0.8)).start()
-    subprocess.Popen(['python', 'Files/Mod/default/sfx_close.py'])
+    subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx_close.py')])
     thesystem.system.animate_window_close(window, initial_height, window_width, step=20, delay=1)
 
 window = Tk()
@@ -157,14 +158,14 @@ def complete():
             theme_data=ujson.load(themefile)
             theme=theme_data["Theme"]
 
-        subprocess.Popen(['Python', f'{theme} Version/Settings/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Settings/gui.py')])
         with open("Files/Checks/penalty_open.csv", 'w', newline='') as info_open:
             fw=csv.writer(info_open)
             fw.writerow(["False"])
         ex_close(window)
     
     else:
-        subprocess.Popen(['python', 'First/Theme Check/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('First/Theme Check/gui.py')])
         ex_close(window)
 
 def only_numbers(char):
@@ -495,13 +496,13 @@ image_index = 0
 bot_image_index = 0
 
 # Top bar animation
-top_image = canvas.create_image(367.0, 28.0, image=top_preloaded_images[image_index])
+top_image = canvas.create_image(367.0, 28.0, image=top_preloaded_images[image_index)])
 
 canvas.tag_bind(top_image, "<ButtonPress-1>", start_move)
 canvas.tag_bind(top_image, "<B1-Motion>", move_window)
 
 # Bottom bar animation
-bottom_image = canvas.create_image(376.0, 375.0, image=bottom_preloaded_images[bot_image_index])
+bottom_image = canvas.create_image(376.0, 375.0, image=bottom_preloaded_images[bot_image_index)])
 
 
 def update_images():

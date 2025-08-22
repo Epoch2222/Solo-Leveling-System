@@ -2,6 +2,8 @@ import ujson
 from datetime import datetime, timedelta
 import os
 import random
+import sys
+from thesystem.misc import resource_path
 
 def get_weekly_night_market_data():
     """

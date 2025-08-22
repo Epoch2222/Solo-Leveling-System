@@ -26,7 +26,7 @@ def final(name0,window):
             with open("Files/Player Data/Status.json", 'w') as fina_write_fson:
                 ujson.dump(fina_read_data, fina_write_fson, indent=4)
 
-            subprocess.Popen(['python', 'Anime Version/Status Tab/gui.py'])
+            subprocess.Popen([sys.executable, resource_path('Anime Version/Status Tab/gui.py')])
 
             window.quit()
 
@@ -49,7 +49,7 @@ def final(name0,window):
             with open("Files/Player Data/Status.json", 'w') as fina_write_fson:
                 ujson.dump(fina_read_data, fina_write_fson, indent=4)
 
-            subprocess.Popen(['python', 'Anime Version/Status Tab/gui.py'])
+            subprocess.Popen([sys.executable, resource_path('Anime Version/Status Tab/gui.py')])
 
             window.quit()
 

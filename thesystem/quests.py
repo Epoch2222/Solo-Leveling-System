@@ -6,6 +6,8 @@ import subprocess
 import os
 import thesystem.system
 from PIL import Image, ImageTk
+import sys
+from thesystem.misc import resource_path
 
 def quest_adding_func(entry_1,entry_2,entry_3,entry_4,entry_5,entry_6,window):
     try:
@@ -112,7 +114,7 @@ def quest_adding_func(entry_1,entry_2,entry_3,entry_4,entry_5,entry_6,window):
 
     window.quit()
 
-    subprocess.Popen(['python', f'{theme} Version/Quests/gui.py'])
+    subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Quests/gui.py')])
 
 def quest_reward(window,dicts,rank,name,special=False):
     rol=list(dicts.keys())
@@ -158,7 +160,7 @@ def quest_reward(window,dicts,rank,name,special=False):
             with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
                 theme_data=ujson.load(themefile)
                 theme=theme_data["Theme"]
-            subprocess.Popen(['python', f'{theme} Version/Leveled up/gui.py'])
+            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Leveled up/gui.py')])
 
         elif k=="STRav":
             for k in range(dicts[k]):
@@ -227,13 +229,13 @@ def quest_reward(window,dicts,rank,name,special=False):
             with open("Files\Temp Files\Quest Rewards.json", 'w') as fols:
                 ujson.dump(data_quest_rewards, fols, indent=6)
             
-            subprocess.Popen(['python', f'{theme} Version/New Items/gui.py'])
+            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/New Items/gui.py')])
         else:
             thesystem.system.message_open("Quest Completed")
-            subprocess.Popen(['python', f'{theme} Version/Quests/gui.py'])
+            subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Quests/gui.py')])
     else:
         thesystem.system.message_open("Revertion")
-        subprocess.Popen(['python', 'First/Vows/gui.py'])
+        subprocess.Popen([sys.executable, resource_path('First/Vows/gui.py')])
 
     window.quit()
 
@@ -249,7 +251,7 @@ def abandon_quest(name,window):
     with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
         theme_data=ujson.load(themefile)
         theme=theme_data["Theme"]
-    subprocess.Popen(['python', f'{theme} Version/Quests/gui.py'])
+    subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Quests/gui.py')])
 
     window.quit()
 
@@ -302,7 +304,7 @@ def open_write_quest(name,id,type,window):
                 rec=[name,id,type]
                 fw.writerow(rec)
 
-        subprocess.Popen(['python', f'{theme} Version/Quest Info/gui.py'])
+        subprocess.Popen([sys.executable, resource_path(f'{theme} Version/Quest Info/gui.py')])
 
         with open("Files/Player Data/Tabs.json",'r') as tab_son:
             tab_son_data=ujson.load(tab_son)
