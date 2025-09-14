@@ -116,7 +116,7 @@ class RaidInterface(tk.Frame):
         self.enemy_frame.pack(side=tk.TOP, fill=tk.X, pady=10)
         
         # Enemy sprite display
-        self.enemy_canvas = tk.Canvas(self.enemy_frame, width=300, height=200, bg=transparent_color, highlightthickness=0)
+        self.enemy_canvas = tk.Canvas(self.enemy_frame, width=250, height=150, bg=transparent_color, highlightthickness=0)
         self.enemy_canvas.pack(pady=10)
         self.enemy_sprite = None
         self.enemy_sprite_frames = []
@@ -208,14 +208,11 @@ class RaidInterface(tk.Frame):
         self.timer_label.pack(pady=10)
 
         # A frame for action buttons at the bottom of the sidebar
-        self.button_frame = tk.Frame(self.sidebar_frame, bg=transparent_color)
-        self.button_frame.pack(side=tk.BOTTOM, pady=20)
-        
-        self.complete_move_button = tk.Button(self.button_frame, text="Complete Move", font=("Helvetica", 14, "bold"), 
+        self.complete_move_button = tk.Button(self.main_content_frame, text="Complete Move", font=("Helvetica", 14, "bold"), 
                                              bg="#1E5627", fg="white", relief=tk.FLAT, command=self.complete_move, width=20, height=2)
         
-        self.return_button = tk.Button(self.button_frame, text="Return to Tower", font=("Helvetica", 14), 
-                                      bg="#333", fg="white", relief=tk.FLAT, command=self.end_raid_callback, width=20, height=2)
+        self.return_button = tk.Button(self.main_content_frame, text="Return to Tower", font=("Helvetica", 14, "bold"), 
+                                      bg="#561E1E", fg="white", relief=tk.FLAT, command=self.end_raid_callback, width=20, height=2)
         
         # Apply transparency to all frames and labels
         for widget in self.winfo_children():

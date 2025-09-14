@@ -1,81 +1,81 @@
 {
-  "status": [
-    {
-      "name": "Sung Jin-Woo",
-      "hp": 100,
-      "mp": 100,
-      "level": 1,
-      "str": 13,
-      "int": 10,
-      "agi": 10,
-      "vit": 10,
-      "per": 10,
-      "man": 10,
-      "XP": 27,
-      "coins": 300,
-      "fatigue_max": 40,
-      "fatigue": 5,
-      "last_level": 0,
-      "highest_floor": 1,
-      "skills": {
-        "power_strike": {
-          "unlocked": false,
-          "level": 0,
-          "cooldown": 0
+    "status": [
+        {
+            "name": "Sung Jin-Woo",
+            "hp": 130,
+            "mp": 130,
+            "level": 4,
+            "str": 16,
+            "int": 13,
+            "agi": 13,
+            "vit": 13,
+            "per": 13,
+            "man": 13,
+            "XP": 95,
+            "coins": 900,
+            "fatigue_max": 70,
+            "fatigue": 20,
+            "last_level": 4,
+            "highest_floor": 4,
+            "skills": {
+                "power_strike": {
+                    "unlocked": false,
+                    "level": 0,
+                    "cooldown": 0
+                },
+                "rapid_fire": {
+                    "unlocked": false,
+                    "level": 0,
+                    "cooldown": 0
+                },
+                "defensive_stance": {
+                    "unlocked": false,
+                    "level": 0,
+                    "cooldown": 0
+                },
+                "heal": {
+                    "unlocked": false,
+                    "level": 0,
+                    "cooldown": 0
+                }
+            },
+            "inventory": {
+                "health_potions": 3,
+                "stamina_potions": 2
+            }
         },
-        "rapid_fire": {
-          "unlocked": false,
-          "level": 0,
-          "cooldown": 0
-        },
-        "defensive_stance": {
-          "unlocked": false,
-          "level": 0,
-          "cooldown": 0
-        },
-        "heal": {
-          "unlocked": false,
-          "level": 0,
-          "cooldown": 0
+        {
+            "title_bool": "False",
+            "title": "None",
+            "job": "None"
         }
-      },
-      "inventory": {
-        "health_potions": 3,
-        "stamina_potions": 2
-      }
-    },
-    {
-      "title_bool": "False",
-      "title": "None",
-      "job": "None"
-    }
-  ],
-  "avail_eq": [
-    {
-      "str_based": 0,
-      "int_based": 3
-    }
-  ],
-  "equipment": [
-    {
-      "STR": 0,
-      "AGI": 0,
-      "VIT": 0,
-      "INT": 0,
-      "PER": 0,
-      "MAN": 0
-    }
-  ],
-  "cal_data": [
-    {
-      "age": "17",
-      "gender": "M",
-      "height": "162",
-      "weight": "65",
-      "calorie calc": 2000,
-      "final calorie calc": 2100,
-      "result": "MILD WEIGHT LOSS",
-      "BMI": 23
-    }
-  ]
+    ],
+    "avail_eq": [
+        {
+            "str_based": 0,
+            "int_based": 3
+        }
+    ],
+    "equipment": [
+        {
+            "STR": 0,
+            "AGI": 0,
+            "VIT": 0,
+            "INT": 0,
+            "PER": 0,
+            "MAN": 0
+        }
+    ],
+    "cal_data": [
+        {
+            "age": "17",
+            "gender": "M",
+            "height": "162",
+            "weight": "65",
+            "calorie calc": 2000,
+            "final calorie calc": 2100,
+            "result": "MILD WEIGHT LOSS",
+            "BMI": 23
+        }
+    ]
 }
