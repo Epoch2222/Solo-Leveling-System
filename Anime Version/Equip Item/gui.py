@@ -123,49 +123,47 @@ canvas = Canvas(
 
 canvas.place(x = 0, y = 0)
 
-
 # ! ======================================================================
 # ! FILE RETRIEVAL
 # ! ======================================================================
 
-
+# --- Initialize variables ---
 name1=name2=name3=name4=name5='-'
 rank1=rank2=rank3=rank4=rank5='X'
 dat1=dat2=dat3=dat4=dat5={}
+all_data_slots = [dat1, dat2, dat3, dat4, dat5]
+all_name_slots = [name1, name2, name3, name4, name5]
+all_rank_slots = [rank1, rank2, rank3, rank4, rank5]
 
+# --- Read category from temp file ---
 with open('Files/Temp Files/Equipment Temp.csv', 'r') as fop:
     fr=csv.reader(fop)
     for k in fr:
         cat=k[0]
-        try:
-            typ=k[1]
-        except:
-            print()
-        equipment_temp=k
         break
-    
+
+# --- Load inventory and find matching items with the CORRECT filter ---
 with open('Files/Player Data/Inventory.json', 'r') as fout:
     data=ujson.load(fout)
     rol=list(data.keys())
+
+# Determine the actual category to search for
+search_cat = cat 
+if "WEAPON" in cat:
+    search_cat = "WEAPON"
+
+# This ONE loop now populates everything correctly
 c = 0
 for k in rol:
-    if data[k][0]["cat"] == cat:  # Check if the category matches
-        if c == 0:
-            name1, rank1 = k, data[k][0]["rank"]
-            dat1 = {k: data[k]}  # Store only the current item with its name as the key
-        elif c == 1:
-            name2, rank2 = k, data[k][0]["rank"]
-            dat2 = {k: data[k]}
-        elif c == 2:
-            name3, rank3 = k, data[k][0]["rank"]
-            dat3 = {k: data[k]}
-        elif c == 3:
-            name4, rank4 = k, data[k][0]["rank"]
-            dat4 = {k: data[k]}
-        elif c == 4:
-            name5, rank5 = k, data[k][0]["rank"]
-            dat5 = {k: data[k]}
+    if data[k][0]["cat"] == search_cat and c < 5:
+        all_name_slots[c], all_rank_slots[c] = k, data[k][0]["rank"]
+        all_data_slots[c] = {k: data[k]}
         c += 1
+
+# Unpack the lists back into the original variables for the rest of the script
+name1, name2, name3, name4, name5 = all_name_slots
+rank1, rank2, rank3, rank4, rank5 = all_rank_slots
+dat1, dat2, dat3, dat4, dat5 = all_data_slots
 
 
 # ! ======================================================================

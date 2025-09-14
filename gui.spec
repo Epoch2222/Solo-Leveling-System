@@ -60,7 +60,7 @@ exe = EXE(
     upx_exclude=[],
     runtime_tmpdir=None,
     console=False, # This is the same as --windowed
-    icon=None # You can add an icon path here, e.g., 'assets/icon.ico'
+    icon=None
 )
 
 coll = COLLECT(
@@ -71,5 +71,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='The System'
+    name='The System'  # This will be the name of the output folder
 )

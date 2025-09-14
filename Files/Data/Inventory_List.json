@@ -1,4 +1,60 @@
 {
+  "Kasaka's Venom Fang": [
+    {
+        "desc": "A dagger from the Blue Venom-Fanged Kasaka.",
+        "qty": 1,
+        "cat": "WEAPON",
+        "rank": "C",
+        "buff": {
+          "STRbuff": 10
+        },
+        "debuff": {},
+        "quest": false,
+        "Value": 3000000,
+        "rarity": "Rare"
+    }
+  ],
+  "Knight Killer": [
+    {
+        "desc": "A blood-red dagger from the Knight Captain, Igris.",
+        "qty": 1,
+        "cat": "WEAPON",
+        "rank": "B",
+        "buff": {
+          "STRbuff": 25
+        },
+        "debuff": {},
+        "quest": false,
+        "Value": 25000000,
+        "rarity": "Epic"
+    }
+  ],
+  "Demon King's Dagger": [
+    {
+        "desc": "A shortsword from the Demon King Baran. Induces storms.",
+        "qty": 1,
+        "cat": "WEAPON",
+        "rank": "S",
+        "buff": {},
+        "debuff": {},
+        "quest": false,
+        "Value": 200000000,
+        "rarity": "Legendary"
+    }
+  ],
+  "Gatekeeper's Necklace": [
+    {
+        "desc": "A necklace from the hell's gatekeeper, Cerberus.",
+        "qty": 1,
+        "cat": "ACCESSORY",
+        "rank": "A",
+        "buff": {},
+        "debuff": {},
+        "quest": false,
+        "Value": 150000000,
+        "rarity": "Legendary"
+    }
+  ],
   "Coin Bag 100": [
     {
       "desc": "A bag of 100-or-so coins",

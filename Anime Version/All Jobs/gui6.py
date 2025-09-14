@@ -16,7 +16,6 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
-from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '../../'))
@@ -25,6 +24,7 @@ sys.path.insert(0, project_root)
 import thesystem.system
 import thesystem.job
 import thesystem.misc as misc
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame6")
@@ -35,7 +35,6 @@ def relative_to_assets(path: str) -> Path:
 
 window = Tk()
 
-transp_color="#652aa3"
 
 initial_height = 0
 target_height = 449
@@ -254,7 +253,7 @@ canvas.create_rectangle(
     5.0,
     60.0,
     455.0,
-    fill=transp_color,
+    fill=transp_clr,
     outline="")
 
 canvas.create_rectangle(
@@ -262,7 +261,7 @@ canvas.create_rectangle(
     0.0,
     696.0,
     35.0,
-    fill=transp_color,
+    fill=transp_clr,
     outline="")
 
 canvas.create_rectangle(
@@ -270,7 +269,7 @@ canvas.create_rectangle(
     5.0,
     60.0,
     455.0,
-    fill=transp_color,
+    fill=transp_clr,
     outline="")
 
 canvas.create_rectangle(
@@ -278,7 +277,7 @@ canvas.create_rectangle(
     0.0,
     696.0,
     458.0,
-    fill=transp_color,
+    fill=transp_clr,
     outline="")
 
 canvas.create_rectangle(
@@ -286,7 +285,7 @@ canvas.create_rectangle(
     0.0,
     381.0,
     38.0,
-    fill=transp_color,
+    fill=transp_clr,
     outline="")
 
 canvas.create_rectangle(
@@ -294,7 +293,7 @@ canvas.create_rectangle(
     421.0,
     923.0,
     460.0,
-    fill=transp_color,
+    fill=transp_clr,
     outline="")
 
 canvas.create_rectangle(
@@ -302,7 +301,7 @@ canvas.create_rectangle(
     19.0,
     643.0,
     44.0,
-    fill=transp_color,
+    fill=transp_clr,
     outline="")
 
 canvas.create_rectangle(
@@ -310,7 +309,7 @@ canvas.create_rectangle(
     -10.0,
     765.0,
     50.0,
-    fill=transp_color,
+    fill=transp_clr,
     outline="")
 
 image_40 = thesystem.system.side_bar("left_bar.png", (47, 393), alt=True)

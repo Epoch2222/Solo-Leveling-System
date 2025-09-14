@@ -18,7 +18,6 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
-from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -27,6 +26,7 @@ project_root = os.path.abspath(os.path.join(current_dir, '../../'))
 sys.path.insert(0, project_root)
 
 import thesystem.system
+from thesystem.misc import resource_path
 
 
 OUTPUT_PATH = Path(__file__).parent
@@ -496,13 +496,13 @@ image_index = 0
 bot_image_index = 0
 
 # Top bar animation
-top_image = canvas.create_image(367.0, 28.0, image=top_preloaded_images[image_index)])
+top_image = canvas.create_image(367.0, 28.0, image=top_preloaded_images[image_index])
 
 canvas.tag_bind(top_image, "<ButtonPress-1>", start_move)
 canvas.tag_bind(top_image, "<B1-Motion>", move_window)
 
 # Bottom bar animation
-bottom_image = canvas.create_image(376.0, 375.0, image=bottom_preloaded_images[bot_image_index)])
+bottom_image = canvas.create_image(376.0, 375.0, image=bottom_preloaded_images[bot_image_index])
 
 
 def update_images():

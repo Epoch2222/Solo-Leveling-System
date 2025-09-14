@@ -1,7 +1,9 @@
 {
       "Type": "Quest",
       "Rewards": {
-            "Coin Bag 500": 1,
-            "D Rank Instance Key": 1
+            "Coin Bag 80000": 1,
+            "High Knights Gauntlet": 1,
+            "LVLADD": 2,
+            "INTav": 6
       }
 }

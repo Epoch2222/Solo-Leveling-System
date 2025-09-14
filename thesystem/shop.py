@@ -3,7 +3,73 @@ import ujson
 import subprocess
 import thesystem.system
 import sys
+import os
+import random
 from thesystem.misc import resource_path
+import copy
+
+# --- THIS IS THE FINAL, ROBUST FUNCTION ---
+def inventory_add(item_name, value, status_data, window):
+    """
+    Looks up an item by its name in the master Inventory_List.json,
+    then adds it to the player's inventory, handling stacking.
+    """
+    master_list_path = "Files/Data/Inventory_List.json"
+    inventory_path = "Files/Player Data/Inventory.json"
+    status_path = "Files/Player Data/Status.json"
+
+    # --- 1. Load the Master Item List to get authoritative data ---
+    try:
+        with open(master_list_path, 'r') as f:
+            master_item_list = ujson.load(f)
+    except (FileNotFoundError, ujson.JSONDecodeError):
+        print(f"CRITICAL ERROR: Could not load master item list from {master_list_path}")
+        return # Stop execution if the master list is missing or broken
+
+    # Check if the item exists in the master list
+    if item_name not in master_item_list:
+        print(f"ERROR: Item '{item_name}' not found in the master item list. Purchase cancelled.")
+        return # Stop if the item doesn't exist
+
+    # Get a fresh, clean copy of the item's data from the master list
+    # deepcopy ensures that any changes (like quantity) don't affect the original data structure
+    item_data_to_add = copy.deepcopy(master_item_list[item_name][0])
+
+    # --- 2. Deduct Coins ---
+    current_coins = status_data["status"][0]['coins']
+    new_coins = current_coins - int(value)
+    status_data["status"][0]['coins'] = new_coins
+    with open(status_path, 'w') as f:
+        ujson.dump(status_data, f, indent=4)
+
+    # --- 3. Add Item to Player's Inventory ---
+    inventory_data = {}
+    if os.path.exists(inventory_path):
+        try:
+            with open(inventory_path, 'r') as f:
+                content = f.read()
+                if content:
+                    inventory_data = ujson.loads(content)
+        except (ujson.JSONDecodeError, IOError):
+            inventory_data = {}
+
+    # Check if the player already owns this item
+    if item_name in inventory_data:
+        # If yes, increment the quantity
+        inventory_data[item_name][0]['qty'] += 1
+    else:
+        # If no, set initial quantity to 1 and add the new item
+        item_data_to_add['qty'] = 1
+        inventory_data[item_name] = [item_data_to_add]
+
+    # Write the updated inventory back to the file
+    with open(inventory_path, 'w') as f:
+        ujson.dump(inventory_data, f, indent=4)
+        
+    # --- 4. Close the purchase window ---
+    print(f"Successfully purchased {item_name}!")
+    window.quit()
+
 
 def quests_add(rank, vals, read_status_file_data, window):
     ab_points = ["STR", "AGI", "VIT", "INT", "PER", "MAN"]

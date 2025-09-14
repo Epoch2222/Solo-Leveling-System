@@ -1,13 +1,13 @@
 {
-    "week_key": "2025-06-30",
-    "created_date": "2025-07-05 14:12:45",
-    "week_start": "2025-06-30",
+    "week_key": "2025-08-18",
+    "created_date": "2025-08-23 07:29:37",
+    "week_start": "2025-08-18",
     "rank_items": {
         "S": {
-            "Coin Bag 50000": {
+            "Coin Bag 80000": {
                 "rarity": "Epic",
                 "data": {
-                    "desc": "A bag of 50000-or-so coins",
+                    "desc": "A bag of 80000-or-so coins",
                     "qty": 1,
                     "cat": "MONEY",
                     "rank": "S",
@@ -15,60 +15,66 @@
                     "debuff": "",
                     "quest": true,
                     "rarity": "Epic",
-                    "Value": 50000
+                    "Value": 80000
                 }
             }
         },
         "B": {
-            "High Knights Gauntlet": {
+            "Ring of Precision": {
                 "rarity": "Common",
                 "data": {
-                    "desc": "Gauntlet of a High-Ranking Knight",
+                    "desc": "A ring that sharpens focus and improves accuracy",
                     "qty": 1,
-                    "cat": "FIRST GAUNTLET",
+                    "cat": "RING",
                     "rank": "B",
                     "buff": {
-                        "STRbuff": 2
+                        "PERbuff": 8
                     },
-                    "debuff": "",
+                    "debuff": {
+                        "AGIdebuff": 4
+                    },
                     "quest": true,
-                    "Value": 2000,
+                    "Value": 4500,
                     "rarity": "Common"
                 }
             }
         },
         "C": {
-            "Coin Bag 2000": {
-                "rarity": "Common",
+            "C Rank Instance Key": {
+                "rarity": "Rare",
                 "data": {
-                    "desc": "A bag of 2000-or-so coins",
+                    "desc": "Instance Key to a C Rank Dungeon",
                     "qty": 1,
-                    "cat": "MONEY",
+                    "cat": "Instance Keys",
                     "rank": "C",
                     "buff": "",
                     "debuff": "",
                     "quest": true,
-                    "rarity": "Common",
-                    "Value": 2000
+                    "Value": 20000,
+                    "rarity": "Rare"
                 }
             }
         },
         "D": {
-            "Coin Bag 500": {
+            "Squire's Gauntlet": {
                 "rarity": "Common",
                 "data": {
-                    "desc": "A bag of 500-or-so coins",
+                    "desc": "Gauntlet worn by a loyal squire, providing basic protection",
                     "qty": 1,
-                    "cat": "MONEY",
+                    "cat": "FIRST GAUNTLET",
                     "rank": "D",
-                    "buff": "",
-                    "debuff": "",
+                    "buff": {
+                        "STRbuff": 2
+                    },
+                    "debuff": {
+                        "AGIdebuff": 1
+                    },
                     "quest": true,
-                    "rarity": "Common",
-                    "Value": 500
+                    "Value": 1000,
+                    "rarity": "Common"
                 }
             }
         }
     },
-    "last_updated": "2025-07-05 14:25:47"
+    "last_updated": "2025-08-23 07:29:37"
 }

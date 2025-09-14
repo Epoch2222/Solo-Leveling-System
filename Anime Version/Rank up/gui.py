@@ -17,7 +17,6 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
-from thesystem.misc import resource_path
 import json
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -28,6 +27,7 @@ sys.path.insert(0, project_root)
 
 import thesystem.system
 import thesystem.misc as misc
+from thesystem.misc import resource_path
 
 
 OUTPUT_PATH = Path(__file__).parent
@@ -184,7 +184,7 @@ with open("Files/Temp Files/Rank file.csv", "r") as f:
     reader = csv.reader(f)
     for row in reader:
         if len(row) == 1:
-            old_lvl = int(row[0)])
+            old_lvl = int(row[0])
             status_data = misc.load_ujson("Files/Player Data/Status.json")
             name = status_data["status"][0]["name"]
             level = status_data["status"][0]["level"]

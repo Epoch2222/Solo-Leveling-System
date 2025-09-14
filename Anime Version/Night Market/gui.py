@@ -18,7 +18,6 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
-from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -31,6 +30,7 @@ import thesystem.misc
 import thesystem.misc as misc
 import thesystem.nightmarket
 import thesystem.inventory
+from thesystem.misc import resource_path
 
 
 OUTPUT_PATH = Path(__file__).parent

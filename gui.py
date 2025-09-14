@@ -88,12 +88,6 @@ except:
 
 
 if vow==False:
-    thesystem.system.fix_7x()
-    thesystem.system.replace_code_from_txt(r"thesystem\\update_txt.txt", "update.py")
-    if os.path.exists("thesystem/temp 7x2.txt"):
-        subprocess.Popen([sys.executable, thesystem.misc.resource_path("crash_fix.py")])
-    
-    thing=txt='None'
     stop_thread = False  # Global flag to control the thread
 
 
@@ -115,9 +109,7 @@ if vow==False:
         "Dungeons": "Close",
         "Settings": "Close",
         "Calories": "Close",
-        "Castle": "Close",
-        "Intro": "Close",
-        "Credits": "Close"
+        "Castle": "Close"
     }
 
     # Ensure the directory exists before writing the file
@@ -389,7 +381,6 @@ if vow==False:
     def open_cal(e):        open_tab("Calories", "Calorie Input")
     def open_dungeon(e):    open_tab("Dungeons", "Dungeon")
     def settings_open(e):   open_tab("Settings", "Settings")
-    def credit_open(e):     open_tab("Credits", "Credits")
     def castle_open(e):     open_tab("Castle", "Demon Castle")
     def inv_open(e):        open_tab("Inventory", "Inventory")
     def daily_open(e):      open_tab("Daily", "Daily Quest")  # No status update? Keeping that behavior
@@ -418,24 +409,6 @@ if vow==False:
         subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_close.py')])
         sys.exit()
 
-    def intro(event):
-        with open('Files/Player Data/Theme_Check.json', 'r') as themefile:
-            theme_data=json.load(themefile)
-            theme=theme_data["Theme"]
-
-        with open("Files/Player Data/Tabs.json",'r') as tab_son:
-            tab_son_data=json.load(tab_son)
-
-        if tab_son_data["Intro"]=='Close':
-
-            with open("Files/Player Data/Tabs.json",'w') as fin_tab_son:
-                tab_son_data["Intro"]='Open'
-                json.dump(tab_son_data,fin_tab_son,indent=4)
-
-            inv_name=f"{theme} Version/Intro/gui.py"
-            subprocess.Popen([sys.executable, thesystem.misc.resource_path(inv_name)])
-            subprocess.Popen([sys.executable, thesystem.misc.resource_path('Files/Mod/default/sfx_button.py')])
-
     def show_job():
         canvas.itemconfig("job", state="normal")
 
@@ -443,7 +416,7 @@ if vow==False:
         canvas.itemconfig("job", state="hidden")
 
     def check_for_update() -> bool:
-        github_csv_url = "https://raw.githubusercontent.com/Venexs/The-System/Update_RAW/version.csv"
+        github_csv_url = "https://raw.githubusercontent.com/Epoch2222/Solo-Leveling-System/refs/heads/main/version.csv"
         local_csv_path = "version.csv"
 
         try:
@@ -649,29 +622,6 @@ if vow==False:
 
     canvas.tag_bind(image_11, "<ButtonPress-1>", update_open)
 
-    image_image_12 = PhotoImage(
-        file=relative_to_assets("image_12.png"))
-    image_12 = canvas.create_image(
-        343.0,
-        530.0,
-        image=image_image_12,
-        tag="home10",
-        state="hidden"
-    )
-
-    canvas.tag_bind(image_12, "<ButtonPress-1>", intro)
-
-    image_image_13 = PhotoImage(
-        file=relative_to_assets("image_13.png"))
-    image_13 = canvas.create_image(
-        577.0,
-        530.0,
-        image=image_image_13,
-        tag="home11",
-        state="hidden"
-    )
-
-    canvas.tag_bind(image_13, "<ButtonPress-1>", credit_open)
 
     image_image_14 = PhotoImage(
         file=relative_to_assets("image_14.png"))

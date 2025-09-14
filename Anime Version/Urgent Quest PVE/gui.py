@@ -26,6 +26,7 @@ project_root = os.path.abspath(os.path.join(current_dir, '../../'))
 sys.path.insert(0, project_root)
 
 import thesystem.system
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -80,7 +81,7 @@ def split_description(desc_full):
     while len(parts) < 6:
         parts.append("")
     
-    return tuple(parts[:6)])
+    return tuple(parts[:6])
 
 
 window = Tk()

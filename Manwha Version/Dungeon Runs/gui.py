@@ -911,22 +911,22 @@ class DungeonSystem:
 
             # Define rewards based on rank
             if self.rew_rank == 'E':
-                coin = 100
+                coin = 2000
                 avp = 1
             elif self.rew_rank == 'D':
-                coin = 500
+                coin = 6000
                 avp = 2
             elif self.rew_rank == 'C':
-                coin = 1000
+                coin = 20000
                 avp = 3
             elif self.rew_rank == 'B':
-                coin = 5000
+                coin = 60000
                 avp = 4
             elif self.rew_rank == 'A':
-                coin = 10000
+                coin = 200000
                 avp = 5
             elif self.rew_rank == 'S':
-                coin = 20000
+                coin = 600000
                 avp = 6
 
             # Apply completion percentage to rewards

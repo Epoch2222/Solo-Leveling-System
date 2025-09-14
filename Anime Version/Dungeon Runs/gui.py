@@ -15,7 +15,6 @@ import time
 import math
 import json
 import numpy as np
-from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '../../'))
@@ -25,6 +24,7 @@ import thesystem.dungeon
 import thesystem.system
 import thesystem.misc
 import thesystem.dungeon
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -924,22 +924,22 @@ class DungeonSystem:
 
             # Define rewards based on rank
             if self.rew_rank == 'E':
-                coin = 100
+                coin = 2000
                 avp = 1
             elif self.rew_rank == 'D':
-                coin = 500
+                coin = 5000
                 avp = 2
             elif self.rew_rank == 'C':
-                coin = 1000
+                coin = 20000
                 avp = 3
             elif self.rew_rank == 'B':
-                coin = 5000
+                coin = 60000
                 avp = 4
             elif self.rew_rank == 'A':
-                coin = 10000
+                coin = 200000
                 avp = 5
             elif self.rew_rank == 'S':
-                coin = 20000
+                coin = 500000
                 avp = 6
 
             # Apply completion percentage to rewards

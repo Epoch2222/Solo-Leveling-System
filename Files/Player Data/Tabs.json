@@ -9,7 +9,6 @@
     "Dungeons": "Close",
     "Settings": "Close",
     "Calories": "Close",
-    "Castle": "Close",
-    "Intro": "Close",
-    "Credits": "Close"
+    "Castle": "Open",
+    "Intro": "Close"
 }

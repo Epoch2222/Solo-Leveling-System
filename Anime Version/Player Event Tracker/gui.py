@@ -28,7 +28,7 @@ import thesystem.system
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"D:\Projects\System_SL-main\Anime Version\Player Event Tracker\assets\frame0")
+ASSETS_PATH = os.path.join(project_root, 'Anime Version/Player Event Tracker/assets/frame0')
 
 
 def relative_to_assets(path: str) -> Path:

@@ -18,7 +18,6 @@ from PIL import Image, ImageTk
 import sys
 import os
 import numpy as np
-from thesystem.misc import resource_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -27,6 +26,7 @@ project_root = os.path.abspath(os.path.join(current_dir, '../../'))
 sys.path.insert(0, project_root)
 
 import thesystem.system
+from thesystem.misc import resource_path
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")

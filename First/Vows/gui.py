@@ -24,6 +24,7 @@ project_root = os.path.abspath(os.path.join(current_dir, '../../'))
 sys.path.insert(0, project_root)
 
 import thesystem.system
+from thesystem.misc import resource_path
 
 subprocess.Popen([sys.executable, resource_path('Files/Mod/default/sfx.py')])
 
@@ -44,7 +45,7 @@ target_height = 432
 window_width = 712
 
 window.geometry(f"{initial_width}x{initial_height}")
-thesystem.system.animate_window_open_middle(window, target_height, window_width, step=35, delay=1)
+thesystem.system.animate_window_open(window, target_height, window_width, step=35, delay=1)
 
 #thesystem.system.center_window(window,window_width,target_height)
 window.configure(bg = "#FFFFFF")

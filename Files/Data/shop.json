@@ -1,0 +1,33 @@
+{
+  "equipment": [
+    {
+      "name": "Kasaka's Venom Fang",
+      "category": "WEAPON",
+      "rank": "C",
+      "description": "A dagger from the Blue Venom-Fanged Kasaka.",
+      "value": 3000000
+    },
+    {
+      "name": "Knight Killer",
+      "category": "WEAPON",
+      "rank": "B",
+      "description": "A blood-red dagger from the Knight Captain, Igris.",
+      "value": 25000000
+    },
+    {
+      "name": "Demon King's Dagger",
+      "category": "WEAPON",
+      "rank": "S",
+      "description": "A shortsword from the Demon King Baran. Induces storms.",
+      "value": 200000000
+    },
+    {
+      "name": "Gatekeeper's Necklace",
+      "category": "ACCESSORY",
+      "rank": "A",
+      "description": "A necklace from the hell's gatekeeper, Cerberus.",
+      "value": 150000000
+    }
+  ],
+  "items": []
+}
